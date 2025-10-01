@@ -2,32 +2,44 @@
 
 @section('content')
 <div class="container">
-    <h1>Daftar Lecturers</h1>
-    <a href="{{ route('lecturers.create') }}" class="btn btn-primary mb-3">Tambah Lecturer</a>
+    <h2 class="mb-3">Daftar Dosen</h2>
+    <a href="{{ route('lecturers.create') }}" class="btn btn-primary mb-3">+ Tambah Dosen</a>
 
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nama</th>
-                <th>NIDN</th>
-                <th>Email</th>
-                <th>Department</th>
-                <th>Aksi</th>
-            </tr>
-        </thead>
-        <tbody>
-            @forelse ($lecturers as $lecturer)
+    @if(session('success'))
+        <div class="alert alert-success">{{ session('success') }}</div>
+    @endif
+
+    @if($lecturers->isEmpty())
+        <div class="alert alert-warning">Belum ada data dosen.</div>
+    @else
+        <table class="table table-bordered">
+            <thead class="table-dark">
                 <tr>
-                    <td>{{ $lecturer->id }}</td>
+                    <th>No</th>
+                    <th>Nama</th>
+                    <th>Email</th>
+                    <th>Telepon</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($lecturers as $i => $lecturer)
+                <tr>
+                    <td>{{ $i+1 }}</td>
                     <td>{{ $lecturer->name }}</td>
-                    <td>{{ $lecturer->nidn }}</td>
                     <td>{{ $lecturer->email }}</td>
-                    <td>{{ $lecturer->department }}</td>
+                    <td>{{ $lecturer->phone }}</td>
                     <td>
-                        <a href="{{ route('lecturers.show', $lecturer->id) }}" class="btn btn-info btn-sm">Lihat</a>
                         <a href="{{ route('lecturers.edit', $lecturer->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                        <form action="{{ route('lecturers.destroy', $lecturer->id) }}" method="POST" style="display:inline-block;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm"
+                        <form action="{{ route('lecturers.destroy', $lecturer->id) }}" method="POST" class="d-inline">
+                            @csrf @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin mau hapus?')">Hapus</button>
+                        </form>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    @endif
+</div>
+@endsection

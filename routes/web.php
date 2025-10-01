@@ -10,6 +10,7 @@ use App\Http\Controllers\AchievementController;
 
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
+// CRUD Routes
 Route::resource('lecturers', LecturerController::class);
 Route::resource('students', StudentController::class);
 Route::resource('research', ResearchController::class);

@@ -11,11 +11,11 @@ return new class extends Migration
     {
         Schema::create('lecturers', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('nidn')->unique();
-            $table->string('email')->unique();
-            $table->string('department');
-            $table->timestamps();
+$table->string('name', 100);
+$table->string('email')->unique();
+$table->string('phone', 15)->nullable();
+$table->timestamps();
+
         });
     }
 
