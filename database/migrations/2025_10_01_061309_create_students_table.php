@@ -11,13 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        // Supaya gak error "table exists"
-        Schema::dropIfExists('pengajuans');
-
-        Schema::create('pengajuans', function (Blueprint $table) {
+        Schema::create('students', function (Blueprint $table) {
             $table->id();
-            $table->string('judul');
-            $table->text('deskripsi')->nullable();
             $table->timestamps();
         });
     }
@@ -27,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pengajuans');
+        Schema::dropIfExists('students');
     }
 };

@@ -1,14 +1,17 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LecturerController;
+use App\Http\Controllers\StudentController;
+use App\Http\Controllers\ResearchController;
+use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\AchievementController;
 
-Route::get('/', function () {
-    return view('dashboard');
-});
+Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-});
-
-Route::get('/lecturer', [LecturerController::class, 'index'])->name('lecturer.index');
+Route::resource('lecturers', LecturerController::class);
+Route::resource('students', StudentController::class);
+Route::resource('research', ResearchController::class);
+Route::resource('services', ServiceController::class);
+Route::resource('achievements', AchievementController::class);
