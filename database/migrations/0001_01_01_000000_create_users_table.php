@@ -6,24 +6,21 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Jalankan migrasi: buat tabel pengajuans.
-     */
     public function up(): void
     {
-        Schema::create('pengajuans', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('judul');        // Judul pengajuan
-            $table->text('deskripsi');      // Deskripsi pengajuan
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
+            $table->rememberToken();
             $table->timestamps();
         });
     }
 
-    /**
-     * Rollback migrasi: hapus tabel pengajuans.
-     */
     public function down(): void
     {
-        Schema::dropIfExists('pengajuans');
+        Schema::dropIfExists('users');
     }
 };
