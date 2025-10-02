@@ -6,20 +6,19 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('research', function (Blueprint $table) {
-            $table->id();
+            $table->id(); // ID_Penelitian
+            $table->string('judul'); 
+            $table->string('bidang'); 
+            $table->date('tanggal_mulai'); 
+            $table->date('tanggal_selesai')->nullable(); 
+            $table->enum('status', ['ongoing', 'completed', 'pending'])->default('pending'); 
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('research');

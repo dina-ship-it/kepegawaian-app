@@ -8,16 +8,16 @@ use Illuminate\Http\Request;
 class ResearchController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Menampilkan semua data penelitian
      */
     public function index()
     {
-        $research = Research::all();
+        $research = Research::all(); // hasilnya collection
         return view('research.index', compact('research'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Menampilkan form tambah data penelitian
      */
     public function create()
     {
@@ -25,60 +25,83 @@ class ResearchController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Simpan data baru penelitian
      */
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required',
-            'author' => 'required',
-            'year' => 'required|integer',
+            'judul' => 'required|string|max:255',
+            'bidang' => 'required|string|max:100',
+            'tanggal_mulai' => 'required|date',
+            'tanggal_selesai' => 'nullable|date',
+            'status' => 'required|string|max:50',
         ]);
 
-        Research::create($request->all());
+        Research::create([
+            'judul' => $request->judul,
+            'bidang' => $request->bidang,
+            'tanggal_mulai' => $request->tanggal_mulai,
+            'tanggal_selesai' => $request->tanggal_selesai,
+            'status' => $request->status,
+        ]);
 
-        return redirect()->route('research.index')->with('success', 'Penelitian berhasil ditambahkan!');
+        return redirect()->route('research.index')
+                         ->with('success', 'Data penelitian berhasil ditambahkan!');
     }
 
     /**
-     * Display the specified resource.
+     * Menampilkan detail 1 penelitian
      */
-    public function show(Research $research)
+    public function show($id)
     {
+        $research = Research::findOrFail($id);
         return view('research.show', compact('research'));
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Menampilkan form edit penelitian
      */
-    public function edit(Research $research)
+    public function edit($id)
     {
+        $research = Research::findOrFail($id);
         return view('research.edit', compact('research'));
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update data penelitian
      */
-    public function update(Request $request, Research $research)
+    public function update(Request $request, $id)
     {
         $request->validate([
-            'title' => 'required',
-            'author' => 'required',
-            'year' => 'required|integer',
+            'judul' => 'required|string|max:255',
+            'bidang' => 'required|string|max:100',
+            'tanggal_mulai' => 'required|date',
+            'tanggal_selesai' => 'nullable|date',
+            'status' => 'required|string|max:50',
         ]);
 
-        $research->update($request->all());
+        $research = Research::findOrFail($id);
+        $research->update([
+            'judul' => $request->judul,
+            'bidang' => $request->bidang,
+            'tanggal_mulai' => $request->tanggal_mulai,
+            'tanggal_selesai' => $request->tanggal_selesai,
+            'status' => $request->status,
+        ]);
 
-        return redirect()->route('research.index')->with('success', 'Penelitian berhasil diperbarui!');
+        return redirect()->route('research.index')
+                         ->with('success', 'Data penelitian berhasil diupdate!');
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Hapus penelitian
      */
-    public function destroy(Research $research)
+    public function destroy($id)
     {
+        $research = Research::findOrFail($id);
         $research->delete();
 
-        return redirect()->route('research.index')->with('success', 'Penelitian berhasil dihapus!');
+        return redirect()->route('research.index')
+                         ->with('success', 'Data penelitian berhasil dihapus!');
     }
 }
