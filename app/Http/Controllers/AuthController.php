@@ -3,43 +3,37 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use App\Models\Admin; // Pastikan model ini benar-benar ada di app/Models/Admin.php
-use Illuminate\Support\Facades\Session;
+use App\Models\Mahasiswa; // ✅ tambahkan ini
 
 class AuthController extends Controller
 {
-    public function loginAdmin(Request $request)
+    // ✅ Tampilkan form login mahasiswa
+    public function showLoginMahasiswaForm()
     {
-        // ✅ Validasi input
+        // Pastikan view ini ada: resources/views/auth/login_mahasiswa.blade.php
+        return view('auth.login_mahasiswa');
+    }
+
+    // ✅ Proses login mahasiswa
+    public function loginMahasiswa(Request $request)
+    {
         $request->validate([
-            'username' => 'required',
+            'nim' => 'required',
             'password' => 'required',
         ]);
 
-        // ✅ Cari admin berdasarkan username
-        $admin = Admin::where('username', $request->username)->first();
+        // Cari data mahasiswa berdasarkan NIM
+        $mahasiswa = Mahasiswa::where('nim', $request->nim)->first();
 
-        // ✅ Cek apakah admin ditemukan dan password cocok
-        if ($admin && Hash::check($request->password, $admin->password)) {
-            
-            // ✅ Simpan sesi login (opsional, agar bisa dipakai di middleware nanti)
-            Session::put('admin_logged_in', true);
-            Session::put('admin_name', $admin->username);
-
-            // ✅ Redirect ke dashboard admin
-            return redirect()->route('admin.dashboard')
-                ->with('success', 'Berhasil login sebagai Administrator!');
-        } else {
-            // ❌ Login gagal
-            return back()->with('error', 'Username atau password salah!');
+        // Cek apakah mahasiswa ditemukan dan password cocok
+        if ($mahasiswa && Hash::check($request->password, $mahasiswa->password)) {
+            Auth::login($mahasiswa); // login user ini
+            return redirect()->route('landing')->with('success', 'Login berhasil!');
         }
-    }
 
-    // ✅ Tambahan opsional: untuk logout admin
-    public function logoutAdmin()
-    {
-        Session::forget(['admin_logged_in', 'admin_name']);
-        return redirect()->route('login.admin')->with('success', 'Berhasil logout.');
+        // Kalau gagal
+        return back()->withErrors(['nim' => 'NIM atau password salah']);
     }
 }
