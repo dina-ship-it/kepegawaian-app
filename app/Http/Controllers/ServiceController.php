@@ -7,59 +7,60 @@ use Illuminate\Http\Request;
 
 class ServiceController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $services = Service::all();
+        return view('services.index', compact('services'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view('services.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nama_kegiatan' => 'required|string|max:255',
+            'jenis_kegiatan' => 'required|string|max:100',
+            'deskripsi' => 'nullable|string',
+            'lokasi' => 'nullable|string|max:255',
+            'tanggal_mulai' => 'required|date',
+            'tanggal_selesai' => 'nullable|date',
+        ]);
+
+        Service::create($request->all());
+        return redirect()->route('services.index')->with('success', 'Service berhasil ditambahkan!');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Service $service)
+    public function edit($id)
     {
-        //
+        $service = Service::findOrFail($id);
+        return view('services.edit', compact('service'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Service $service)
+    public function update(Request $request, $id)
     {
-        //
+        $service = Service::findOrFail($id);
+
+        $request->validate([
+            'nama_kegiatan' => 'required|string|max:255',
+            'jenis_kegiatan' => 'required|string|max:100',
+            'deskripsi' => 'nullable|string',
+            'lokasi' => 'nullable|string|max:255',
+            'tanggal_mulai' => 'required|date',
+            'tanggal_selesai' => 'nullable|date',
+        ]);
+
+        $service->update($request->all());
+        return redirect()->route('services.index')->with('success', 'Service berhasil diupdate!');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Service $service)
+    public function destroy($id)
     {
-        //
-    }
+        $service = Service::findOrFail($id);
+        $service->delete();
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Service $service)
-    {
-        //
+        return redirect()->route('services.index')->with('success', 'Service berhasil dihapus!');
     }
 }
