@@ -6,18 +6,12 @@
     <title>SIP2D - Dashboard Administrator</title>
 
     <!-- Bootstrap CSS -->
-    <link 
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" 
-        rel="stylesheet">
-
-    <!-- Bootstrap Icons -->
-    <link 
-        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" 
-        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
 
     <style>
         body {
-            background-color: #f7f9fc;
+            background-color: #f8fafc;
             font-family: 'Segoe UI', sans-serif;
         }
 
@@ -36,7 +30,7 @@
             margin-bottom: 30px;
         }
 
-        .card-stat {
+        .card-stat, .card-manage {
             border: none;
             border-radius: 15px;
             background: #fff;
@@ -46,7 +40,7 @@
             transition: 0.3s ease;
         }
 
-        .card-stat:hover {
+        .card-stat:hover, .card-manage:hover {
             transform: translateY(-5px);
         }
 
@@ -69,19 +63,6 @@
         .icon-yellow { background-color: #ffc107; color: #000; }
         .icon-cyan { background-color: #0dcaf0; color: #000; }
 
-        .card-manage {
-            border: none;
-            border-radius: 15px;
-            background: #fff;
-            box-shadow: 0 3px 8px rgba(0,0,0,0.05);
-            padding: 25px;
-            transition: 0.3s ease;
-        }
-
-        .card-manage:hover {
-            transform: translateY(-5px);
-        }
-
         .btn-outline-primary {
             border-radius: 10px;
             font-weight: 600;
@@ -96,6 +77,12 @@
             <div class="d-flex align-items-center">
                 <i class="bi bi-person-circle fs-5 me-2"></i>
                 <span>Administrator</span>
+                <form action="{{ route('logout') }}" method="POST" class="ms-3">
+                    @csrf
+                    <button type="submit" class="btn btn-sm btn-outline-danger">
+                        <i class="bi bi-box-arrow-right"></i> Logout
+                    </button>
+                </form>
             </div>
         </div>
     </nav>
@@ -151,7 +138,7 @@
                     <div class="icon-box icon-green"><i class="bi bi-mortarboard"></i></div>
                     <h5>Kelola Mahasiswa</h5>
                     <p>Tambah, edit, dan hapus data mahasiswa</p>
-                    <a href="#" class="btn btn-outline-primary btn-sm">Kelola</a>
+                    <a href="{{ route('mahasiswa.index') }}" class="btn btn-outline-primary btn-sm">Kelola</a>
                 </div>
             </div>
             <div class="col-md-4">
@@ -159,7 +146,7 @@
                     <div class="icon-box icon-purple"><i class="bi bi-beaker"></i></div>
                     <h5>Kelola Penelitian</h5>
                     <p>Monitor dan kelola data penelitian</p>
-                    <a href="#" class="btn btn-outline-primary btn-sm">Kelola</a>
+                    <a href="{{ route('penelitian.index') }}" class="btn btn-outline-primary btn-sm">Kelola</a>
                 </div>
             </div>
             <div class="col-md-4">
@@ -167,7 +154,7 @@
                     <div class="icon-box icon-orange"><i class="bi bi-building"></i></div>
                     <h5>Kelola Pengabdian</h5>
                     <p>Monitor dan kelola data pengabdian</p>
-                    <a href="#" class="btn btn-outline-primary btn-sm">Kelola</a>
+                    <a href="{{ route('pengabdian.index') }}" class="btn btn-outline-primary btn-sm">Kelola</a>
                 </div>
             </div>
             <div class="col-md-4">
@@ -175,7 +162,7 @@
                     <div class="icon-box icon-yellow"><i class="bi bi-trophy"></i></div>
                     <h5>Kelola Prestasi</h5>
                     <p>Monitor dan kelola data prestasi</p>
-                    <a href="#" class="btn btn-outline-primary btn-sm">Kelola</a>
+                    <a href="{{ route('prestasi.index') }}" class="btn btn-outline-primary btn-sm">Kelola</a>
                 </div>
             </div>
             <div class="col-md-4">
@@ -183,15 +170,13 @@
                     <div class="icon-box icon-cyan"><i class="bi bi-bar-chart"></i></div>
                     <h5>Laporan</h5>
                     <p>Generate laporan sistem</p>
-                    <a href="#" class="btn btn-outline-primary btn-sm">Kelola</a>
+                    <a href="{{ route('laporan.index') }}" class="btn btn-outline-primary btn-sm">Kelola</a>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Bootstrap JS -->
-    <script 
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js">
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

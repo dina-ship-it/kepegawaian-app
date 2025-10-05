@@ -2,35 +2,27 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Login Administrator</title>
+  <title>Login Admin</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 </head>
-<body class="d-flex vh-100 justify-content-center align-items-center bg-light">
-
-  <div class="card p-4 shadow" style="width:400px; border-radius:15px;">
-    <div class="text-center mb-3">
-      <i class="bi bi-person-circle text-danger fs-1"></i>
-      <h4 class="mt-2">Login Administrator</h4>
-      <p class="text-muted">Masukkan akun untuk mengelola sistem</p>
-    </div>
-
-    <form method="POST" action="#">
+<body class="bg-light d-flex vh-100 justify-content-center align-items-center">
+  <div class="card shadow p-4" style="width: 350px;">
+    <h4 class="text-center mb-3">Login Admin</h4>
+    @if($errors->any())
+      <div class="alert alert-danger">{{ $errors->first() }}</div>
+    @endif
+    <form method="POST" action="{{ route('login.admin.post') }}">
       @csrf
       <div class="mb-3">
-        <label for="username" class="form-label">Nama Pengguna / Email *</label>
-        <input type="text" class="form-control" id="username" name="username" placeholder="Masukkan username">
+        <label>Email</label>
+        <input type="email" name="email" class="form-control" required>
       </div>
       <div class="mb-3">
-        <label for="password" class="form-label">Kata Sandi *</label>
-        <input type="password" class="form-control" id="password" name="password" placeholder="Masukkan password">
+        <label>Password</label>
+        <input type="password" name="password" class="form-control" required>
       </div>
-      <button type="submit" class="btn btn-danger w-100">Masuk sebagai Administrator</button>
-      <div class="text-center mt-2">
-        <a href="#">Lupa kata sandi? Reset di sini</a>
-      </div>
+      <button type="submit" class="btn btn-danger w-100">Login</button>
     </form>
   </div>
-
 </body>
 </html>

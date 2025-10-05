@@ -2,79 +2,44 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\DosenController;
 use App\Http\Controllers\MahasiswaController;
-use App\Http\Controllers\PenelitianController;
-use App\Http\Controllers\PengabdianController;
-use App\Http\Controllers\PrestasiController;
-use App\Http\Controllers\LaporanController;
-use Illuminate\Support\Facades\Auth;
 
-// ==============================
-// LANDING PAGE
-// ==============================
+// ===============================
+// 🌐 HALAMAN AWAL
+// ===============================
 Route::get('/', function () {
-    return view('landing');
-})->name('landing');
+    return view('welcome');
+});
 
-// ==============================
-// LOGIN PAGE
-// ==============================
-Route::get('/login/pilih', function () {
-    return view('auth.pilih_login');
-})->name('login.pilih');
+// ===============================
+// 👤 PILIH LOGIN
+// ===============================
+Route::get('/login/pilih', [AuthController::class, 'pilihLogin'])->name('login.pilih');
 
-// ==============================
-// LOGIN ADMIN
-// ==============================
-Route::get('/login/admin', function () {
-    return view('admin.login_admin');
-})->name('login.admin');
-Route::post('/login/admin', [AuthController::class, 'loginAdmin'])->name('login.admin.post');
+// ===============================
+// 👨‍💼 ADMIN LOGIN
+// ===============================
+Route::get('/login/admin', [AuthController::class, 'showAdminLoginForm'])->name('login.admin');
+Route::post('/login/admin', [AuthController::class, 'adminLogin'])->name('login.admin.post');
 
-// ==============================
-// LOGIN DOSEN
-// ==============================
-Route::get('/login/dosen', function () {
-    return view('auth.login_dosen');
-})->name('login.dosen');
-// Route::post('/login/dosen', [AuthController::class, 'loginDosen'])->name('login.dosen.post');
+// ===============================
+// 👨‍🏫 DOSEN LOGIN
+// ===============================
+Route::get('/login/dosen', [AuthController::class, 'showDosenLoginForm'])->name('login.dosen');
+Route::post('/login/dosen', [AuthController::class, 'dosenLogin'])->name('login.dosen.post');
 
-// ==============================
-// LOGIN MAHASISWA
-// ==============================
+// ===============================
+// 🎓 MAHASISWA LOGIN
+// ===============================
+Route::get('/login/mahasiswa', [AuthController::class, 'showMahasiswaLoginForm'])->name('login.mahasiswa');
+Route::post('/login/mahasiswa', [AuthController::class, 'mahasiswaLogin'])->name('login.mahasiswa.post');
 
-// Halaman form login mahasiswa (GET)
-Route::get('/login/mahasiswa', [AuthController::class, 'showLoginMahasiswaForm'])
-    ->name('login.mahasiswa');
+// ===============================
+// 🏠 DASHBOARD MAHASISWA
+// ===============================
+Route::get('/mahasiswa/dashboard', [MahasiswaController::class, 'dashboard'])->name('mahasiswa.dashboard');
 
-// Proses login mahasiswa (POST)
-Route::post('/login/mahasiswa', [AuthController::class, 'loginMahasiswa'])
-    ->name('login.mahasiswa.submit');
-
-// ==============================
-// DASHBOARD ADMIN
-// ==============================
-Route::get('/admin/dashboard', function () {
-    return view('admin.dashboard');
-})->name('admin.dashboard');
-
-// ==============================
-// CRUD RESOURCE ROUTES
-// ==============================
-Route::resource('dosen', DosenController::class);
-Route::resource('mahasiswa', MahasiswaController::class);
-Route::resource('penelitian', PenelitianController::class);
-Route::resource('pengabdian', PengabdianController::class);
-Route::resource('prestasi', PrestasiController::class);
-Route::resource('laporan', LaporanController::class);
-
-// ==============================
-// LOGOUT (UNTUK SEMUA ROLE)
-// ==============================
-Route::post('/logout', function () {
-    Auth::logout();
-    request()->session()->invalidate();
-    request()->session()->regenerateToken();
-    return redirect('/')->with('success', 'Berhasil logout!');
-})->name('logout');
+// ===============================
+// 📁 UPLOAD DOKUMENTASI MAHASISWA
+// ===============================
+Route::post('/mahasiswa/upload', [MahasiswaController::class, 'storeUpload'])->name('mahasiswa.storeUpload');

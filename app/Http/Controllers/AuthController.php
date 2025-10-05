@@ -3,37 +3,66 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use App\Models\Mahasiswa; // ✅ tambahkan ini
 
 class AuthController extends Controller
 {
-    // ✅ Tampilkan form login mahasiswa
-    public function showLoginMahasiswaForm()
+    // ===============================
+    // PILIH LOGIN
+    // ===============================
+    public function pilihLogin()
     {
-        // Pastikan view ini ada: resources/views/auth/login_mahasiswa.blade.php
+        return view('auth.pilih_login');
+    }
+
+    // ===============================
+    // ADMIN LOGIN
+    // ===============================
+    public function showAdminLoginForm()
+    {
+        return view('auth.login_admin');
+    }
+
+    public function adminLogin(Request $request)
+    {
+        // Login manual contoh
+        if ($request->email === 'admin@gmail.com' && $request->password === 'admin123') {
+            return redirect()->route('admin.dashboard')->with('success', 'Login admin berhasil!');
+        }
+
+        return back()->withErrors(['email' => 'Email atau password salah.']);
+    }
+
+    // ===============================
+    // DOSEN LOGIN
+    // ===============================
+    public function showDosenLoginForm()
+    {
+        return view('auth.login_dosen');
+    }
+
+    public function dosenLogin(Request $request)
+    {
+        if ($request->email === 'dosen@gmail.com' && $request->password === 'dosen123') {
+            return redirect()->route('dosen.dashboard')->with('success', 'Login dosen berhasil!');
+        }
+
+        return back()->withErrors(['email' => 'Email atau password salah.']);
+    }
+
+    // ===============================
+    // MAHASISWA LOGIN
+    // ===============================
+    public function showMahasiswaLoginForm()
+    {
         return view('auth.login_mahasiswa');
     }
 
-    // ✅ Proses login mahasiswa
-    public function loginMahasiswa(Request $request)
+    public function mahasiswaLogin(Request $request)
     {
-        $request->validate([
-            'nim' => 'required',
-            'password' => 'required',
-        ]);
-
-        // Cari data mahasiswa berdasarkan NIM
-        $mahasiswa = Mahasiswa::where('nim', $request->nim)->first();
-
-        // Cek apakah mahasiswa ditemukan dan password cocok
-        if ($mahasiswa && Hash::check($request->password, $mahasiswa->password)) {
-            Auth::login($mahasiswa); // login user ini
-            return redirect()->route('landing')->with('success', 'Login berhasil!');
+        if ($request->email === 'mahasiswa@gmail.com' && $request->password === 'mahasiswa123') {
+            return redirect()->route('mahasiswa.dashboard')->with('success', 'Login mahasiswa berhasil!');
         }
 
-        // Kalau gagal
-        return back()->withErrors(['nim' => 'NIM atau password salah']);
+        return back()->withErrors(['email' => 'Email atau password salah.']);
     }
 }
