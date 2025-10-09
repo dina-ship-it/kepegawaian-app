@@ -4,23 +4,60 @@ namespace App\Http\Controllers;
 
 use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class MahasiswaController extends Controller
 {
-    // 🔹 Tampilkan semua data mahasiswa
+    // =============================
+    // 🏠 Dashboard Mahasiswa
+    // =============================
+    public function dashboard()
+    {
+        // kalau nanti ada tabel dokumentasi, ini bisa dihitung dari DB
+        $fotoCount = 0;
+        $videoCount = 0;
+        $total = $fotoCount + $videoCount;
+
+        return view('mahasiswa.dashboard', compact('fotoCount', 'videoCount', 'total'));
+    }
+
+    // =============================
+    // 📤 Upload Dokumentasi
+    // =============================
+    public function storeUpload(Request $request)
+    {
+        $request->validate([
+            'judul' => 'required|string|max:255',
+            'file' => 'required|file|mimes:jpg,jpeg,png,mp4|max:20480', // max 20MB
+        ]);
+
+        // Simpan file ke storage
+        $path = $request->file('file')->store('dokumentasi', 'public');
+
+        // Jika nanti ada model Dokumentasi, kamu bisa simpan ke DB:
+        // Dokumentasi::create([
+        //     'judul' => $request->judul,
+        //     'path' => $path,
+        // ]);
+
+        return redirect()->route('mahasiswa.dashboard')->with('success', '✅ Upload dokumentasi berhasil!');
+    }
+
+    // =============================
+    // 📋 CRUD Mahasiswa (Sudah ada)
+    // =============================
+
     public function index()
     {
         $mahasiswa = Mahasiswa::latest()->get();
         return view('mahasiswa.index', compact('mahasiswa'));
     }
 
-    // 🔹 Form tambah mahasiswa
     public function create()
     {
         return view('mahasiswa.create');
     }
 
-    // 🔹 Simpan data baru
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -38,13 +75,11 @@ class MahasiswaController extends Controller
         return redirect()->route('mahasiswa.index')->with('success', '✅ Data mahasiswa berhasil ditambahkan!');
     }
 
-    // 🔹 Form edit mahasiswa
     public function edit(Mahasiswa $mahasiswa)
     {
         return view('mahasiswa.edit', compact('mahasiswa'));
     }
 
-    // 🔹 Update data mahasiswa
     public function update(Request $request, Mahasiswa $mahasiswa)
     {
         $validated = $request->validate([
@@ -62,7 +97,6 @@ class MahasiswaController extends Controller
         return redirect()->route('mahasiswa.index')->with('success', '✅ Data mahasiswa berhasil diperbarui!');
     }
 
-    // 🔹 Hapus data mahasiswa
     public function destroy(Mahasiswa $mahasiswa)
     {
         $mahasiswa->delete();
