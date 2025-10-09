@@ -6,26 +6,23 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
-{
-    Schema::create('dosens', function (Blueprint $table) {
-        $table->id();
-        $table->string('nip')->unique();
-        $table->string('nama');
-        $table->string('email')->unique();
-        $table->string('fakultas');
-        $table->string('prodi');
-        $table->string('jabatan');
-        $table->enum('status', ['Aktif', 'Tidak Aktif'])->default('Aktif');
-        $table->timestamps();
-    });
-}
-    /**
-     * Reverse the migrations.
-     */
+    {
+        Schema::create('dosens', function (Blueprint $table) {
+            $table->id();
+            $table->string('nidn')->unique();
+            $table->string('nama');
+            $table->string('email')->unique();
+            $table->string('fakultas');
+            $table->string('prodi');
+            $table->string('jabatan');
+            $table->enum('status', ['Aktif', 'Tidak Aktif'])->default('Aktif');
+            $table->string('password')->default(bcrypt('12345678')); // ✅ Tambahkan ini
+            $table->year('tahun')->nullable();
+            $table->timestamps();
+        });
+    }
+
     public function down(): void
     {
         Schema::dropIfExists('dosens');

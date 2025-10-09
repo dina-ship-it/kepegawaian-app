@@ -16,6 +16,8 @@ class Dosen extends Model
         'fakultas',
         'prodi',
         'jabatan',
+        'tahun',
         'status',
+        'password',
     ];
 }

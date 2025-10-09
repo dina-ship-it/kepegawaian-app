@@ -2,31 +2,70 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
 
 class MahasiswaController extends Controller
 {
-    // Halaman dashboard utama
-    public function dashboard()
+    // 🔹 Tampilkan semua data mahasiswa
+    public function index()
     {
-        return view('mahasiswa.dashboard');
+        $mahasiswa = Mahasiswa::latest()->get();
+        return view('mahasiswa.index', compact('mahasiswa'));
     }
 
-    // Form upload dokumentasi
-    public function upload()
+    // 🔹 Form tambah mahasiswa
+    public function create()
     {
-        return view('mahasiswa.dashboard');
+        return view('mahasiswa.create');
     }
 
-    // Simpan hasil upload (sementara belum disimpan ke database)
-    public function storeUpload(Request $request)
+    // 🔹 Simpan data baru
+    public function store(Request $request)
     {
-        $request->validate([
-            'judul' => 'required',
-            'file' => 'required|file|mimes:jpg,jpeg,png,pdf|max:2048'
+        $validated = $request->validate([
+            'nim' => 'required|unique:mahasiswas',
+            'nama' => 'required|string|max:100',
+            'email' => 'required|email|unique:mahasiswas',
+            'fakultas' => 'required|string|max:100',
+            'prodi' => 'required|string|max:100',
+            'angkatan' => 'required|digits:4',
+            'status' => 'required|in:Aktif,Tidak Aktif',
         ]);
 
-        // Simulasi berhasil upload
-        return back()->with('success', 'Dokumentasi berhasil diupload!');
+        Mahasiswa::create($validated);
+
+        return redirect()->route('mahasiswa.index')->with('success', '✅ Data mahasiswa berhasil ditambahkan!');
+    }
+
+    // 🔹 Form edit mahasiswa
+    public function edit(Mahasiswa $mahasiswa)
+    {
+        return view('mahasiswa.edit', compact('mahasiswa'));
+    }
+
+    // 🔹 Update data mahasiswa
+    public function update(Request $request, Mahasiswa $mahasiswa)
+    {
+        $validated = $request->validate([
+            'nim' => 'required|unique:mahasiswas,nim,' . $mahasiswa->id,
+            'nama' => 'required|string|max:100',
+            'email' => 'required|email|unique:mahasiswas,email,' . $mahasiswa->id,
+            'fakultas' => 'required|string|max:100',
+            'prodi' => 'required|string|max:100',
+            'angkatan' => 'required|digits:4',
+            'status' => 'required|in:Aktif,Tidak Aktif',
+        ]);
+
+        $mahasiswa->update($validated);
+
+        return redirect()->route('mahasiswa.index')->with('success', '✅ Data mahasiswa berhasil diperbarui!');
+    }
+
+    // 🔹 Hapus data mahasiswa
+    public function destroy(Mahasiswa $mahasiswa)
+    {
+        $mahasiswa->delete();
+        return redirect()->route('mahasiswa.index')->with('success', '🗑️ Data mahasiswa berhasil dihapus!');
     }
 }

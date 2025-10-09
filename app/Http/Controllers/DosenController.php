@@ -3,96 +3,90 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dosen;
+use App\Models\Penelitian;
+use App\Models\Pengabdian;
+use App\Models\Prestasi;
 use Illuminate\Http\Request;
 
 class DosenController extends Controller
 {
-    // 🧩 Tampilkan semua dosen
-    public function index()
+    // ✅ Dashboard Dosen
+    public function dashboard()
     {
-        $dosen = Dosen::all();
+        // Misal ambil data dosen yang sedang login
+        // (sementara contoh ini statis, nanti bisa diganti Auth::guard('dosen')->user())
+        $namaDosen = 'Dosen Aktif'; 
 
-        // Hitung jumlah dosen per tahun
-        $tahun2023 = Dosen::where('tahun', 2023)->count();
-        $tahun2024 = Dosen::where('tahun', 2024)->count();
-        $tahun2025 = Dosen::where('tahun', 2025)->count();
+        // Hitung jumlah data terkait
+        $data = [
+            'nama' => $namaDosen,
+            'penelitian' => Penelitian::count(),
+            'pengabdian' => Pengabdian::count(),
+            'prestasi' => Prestasi::count(),
+            'publikasi' => 0, // nanti bisa ditambah tabel publikasi kalau ada
+        ];
 
-        return view('dosen.index', compact('dosen', 'tahun2023', 'tahun2024', 'tahun2025'));
+        return view('dosen.dashboard', compact('data'));
     }
 
-    // ➕ Tampilkan form tambah dosen
+    // ✅ CRUD DOSEN
+    public function index()
+    {
+        $dosens = Dosen::all();
+        return view('dosen.index', compact('dosens'));
+    }
+
     public function create()
     {
         return view('dosen.create');
     }
 
-    // 💾 Simpan dosen baru
     public function store(Request $request)
     {
-        $request->validate([
-            'nidn' => 'required',
-            'nama' => 'required',
-            'email' => 'required|email',
-            'fakultas' => 'required',
-            'prodi' => 'required',
-            'jabatan' => 'required',
+        $validated = $request->validate([
+            'nidn' => 'required|numeric|unique:dosens,nidn',
+            'nama' => 'required|string|max:255',
+            'email' => 'required|email|unique:dosens,email',
+            'fakultas' => 'required|string|max:255',
+            'prodi' => 'required|string|max:255',
+            'jabatan' => 'required|string|max:255',
+            'tahun' => 'required|numeric|min:2000|max:' . date('Y'),
         ]);
 
         Dosen::create([
-            'nidn' => $request->nidn,
-            'nama' => $request->nama,
-            'email' => $request->email,
-            'fakultas' => $request->fakultas,
-            'prodi' => $request->prodi,
-            'jabatan' => $request->jabatan,
-            'status' => 'Aktif',      // ✅ Default status
-            'tahun' => date('Y'),     // ✅ Otomatis isi tahun sekarang
+            ...$validated,
+            'status' => 'Aktif',
+            'password' => bcrypt('12345678'),
         ]);
 
         return redirect()->route('dosen.index')->with('success', 'Data dosen berhasil ditambahkan!');
     }
 
-    // ✏️ Tampilkan form edit dosen
-    public function edit($id)
+    public function edit(Dosen $dosen)
     {
-        $dosen = Dosen::findOrFail($id);
         return view('dosen.edit', compact('dosen'));
     }
 
-    // 🔄 Update data dosen
-    public function update(Request $request, $id)
+    public function update(Request $request, Dosen $dosen)
     {
-        $request->validate([
-            'nidn' => 'required',
-            'nama' => 'required',
-            'email' => 'required|email',
-            'fakultas' => 'required',
-            'prodi' => 'required',
-            'jabatan' => 'required',
+        $validated = $request->validate([
+            'nidn' => 'required|numeric|unique:dosens,nidn,' . $dosen->id,
+            'nama' => 'required|string|max:255',
+            'email' => 'required|email|unique:dosens,email,' . $dosen->id,
+            'fakultas' => 'required|string|max:255',
+            'prodi' => 'required|string|max:255',
+            'jabatan' => 'required|string|max:255',
+            'tahun' => 'required|numeric|min:2000|max:' . date('Y'),
         ]);
 
-        $dosen = Dosen::findOrFail($id);
-
-        $dosen->update([
-            'nidn' => $request->nidn,
-            'nama' => $request->nama,
-            'email' => $request->email,
-            'fakultas' => $request->fakultas,
-            'prodi' => $request->prodi,
-            'jabatan' => $request->jabatan,
-            'status' => $request->status ?? 'Aktif',  // default kalau tidak dikirim dari form
-            'tahun' => $request->tahun ?? $dosen->tahun, // tetap pakai tahun lama kalau tidak diubah
-        ]);
+        $dosen->update($validated);
 
         return redirect()->route('dosen.index')->with('success', 'Data dosen berhasil diperbarui!');
     }
 
-    // 🗑️ Hapus dosen
-    public function destroy($id)
+    public function destroy(Dosen $dosen)
     {
-        $dosen = Dosen::findOrFail($id);
         $dosen->delete();
-
         return redirect()->route('dosen.index')->with('success', 'Data dosen berhasil dihapus!');
     }
 }
