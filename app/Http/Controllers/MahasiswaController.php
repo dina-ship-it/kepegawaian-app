@@ -9,11 +9,20 @@ use Illuminate\Support\Facades\Storage;
 class MahasiswaController extends Controller
 {
     // =============================
+    // 🏠 Index (default route)
+    // =============================
+    public function index()
+    {
+        // arahkan ke halaman dashboard
+        return $this->dashboard();
+    }
+
+    // =============================
     // 🏠 Dashboard Mahasiswa
     // =============================
     public function dashboard()
     {
-        // kalau nanti ada tabel dokumentasi, ini bisa dihitung dari DB
+        // contoh sementara, nanti bisa ambil dari DB
         $fotoCount = 0;
         $videoCount = 0;
         $total = $fotoCount + $videoCount;
@@ -31,10 +40,10 @@ class MahasiswaController extends Controller
             'file' => 'required|file|mimes:jpg,jpeg,png,mp4|max:20480', // max 20MB
         ]);
 
-        // Simpan file ke storage
+        // Simpan file ke storage/app/public/dokumentasi
         $path = $request->file('file')->store('dokumentasi', 'public');
 
-        // Jika nanti ada model Dokumentasi, kamu bisa simpan ke DB:
+        // Kalau nanti ada tabel dokumentasi, kamu bisa simpan ke DB:
         // Dokumentasi::create([
         //     'judul' => $request->judul,
         //     'path' => $path,
@@ -44,10 +53,9 @@ class MahasiswaController extends Controller
     }
 
     // =============================
-    // 📋 CRUD Mahasiswa (Sudah ada)
+    // 📋 CRUD Mahasiswa
     // =============================
-
-    public function index()
+    public function mahasiswaList()
     {
         $mahasiswa = Mahasiswa::latest()->get();
         return view('mahasiswa.index', compact('mahasiswa'));
@@ -71,7 +79,6 @@ class MahasiswaController extends Controller
         ]);
 
         Mahasiswa::create($validated);
-
         return redirect()->route('mahasiswa.index')->with('success', '✅ Data mahasiswa berhasil ditambahkan!');
     }
 
@@ -93,7 +100,6 @@ class MahasiswaController extends Controller
         ]);
 
         $mahasiswa->update($validated);
-
         return redirect()->route('mahasiswa.index')->with('success', '✅ Data mahasiswa berhasil diperbarui!');
     }
 

@@ -10,7 +10,7 @@ use App\Http\Controllers\PrestasiController;
 use App\Http\Controllers\GoogleController;
 
 // ===============================
-// 🌐 HALAMAN AWAL
+// 🌐 HALAMAN UTAMA
 // ===============================
 Route::get('/', function () {
     return view('welcome');
@@ -40,15 +40,16 @@ Route::get('/login/mahasiswa', [AuthController::class, 'showMahasiswaLoginForm']
 Route::post('/login/mahasiswa', [AuthController::class, 'mahasiswaLogin'])->name('login.mahasiswa.post');
 
 // ===============================
-// 🏠 DASHBOARD MAHASISWA
+// 🎓 DASHBOARD MAHASISWA
 // ===============================
-Route::get('/mahasiswa/dashboard', [MahasiswaController::class, 'dashboard'])->name('mahasiswa.dashboard');
+// gunakan method index() karena di controller kamu namanya index()
+Route::get('/mahasiswa/dashboard', [MahasiswaController::class, 'index'])->name('mahasiswa.dashboard');
 
-// 📁 Upload Dokumentasi Mahasiswa
+// route untuk upload dokumentasi
 Route::post('/mahasiswa/upload', [MahasiswaController::class, 'storeUpload'])->name('mahasiswa.storeUpload');
 
 // ===============================
-// 🏠 DASHBOARD DOSEN
+// 👨‍🏫 DASHBOARD DOSEN
 // ===============================
 Route::get('/dosen/dashboard', [DosenController::class, 'dashboard'])->name('dosen.dashboard');
 
