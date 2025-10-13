@@ -3,27 +3,12 @@
 @section('content')
 <div class="min-h-screen bg-gray-50 flex flex-col items-center py-10">
 
-    {{-- Header --}}
-    <div class="w-full max-w-6xl bg-white rounded-2xl shadow-sm border border-gray-100">
-        <div class="flex justify-between items-center px-8 py-4 bg-blue-600 rounded-t-2xl text-white">
-            <div class="flex items-center space-x-3">
-                <div class="bg-white text-blue-600 font-bold px-3 py-1 rounded-lg">SIP2D</div>
-                <h1 class="text-lg font-semibold">Dashboard Mahasiswa</h1>
-            </div>
-            <div class="space-x-6 text-sm font-medium">
-                <a href="#" class="hover:underline">Home</a>
-                <a href="#" class="hover:underline">Mahasiswa</a>
-                <a href="#" class="hover:underline">Dosen</a>
-                <a href="#" class="hover:underline">Admin</a>
-                <a href="#" class="hover:underline">Logout</a>
-            </div>
-        </div>
-    </div>
-
     {{-- Judul --}}
     <div class="text-center mt-10 mb-6">
         <h2 class="text-xl font-semibold text-gray-800">SIP2D - Dashboard Mahasiswa</h2>
-        <p class="text-gray-500 mt-1">Upload dokumentasi foto dan video kegiatan penelitian serta pengabdian masyarakat</p>
+        <p class="text-gray-500 mt-1">
+            Upload dokumentasi foto dan video kegiatan penelitian serta pengabdian masyarakat
+        </p>
     </div>
 
     {{-- Statistik --}}
@@ -59,27 +44,37 @@
             <i class="fas fa-cloud-upload-alt text-4xl"></i>
         </div>
         <h3 class="text-lg font-semibold text-gray-800 mb-2">Upload Dokumentasi</h3>
-        <p class="text-gray-500 text-sm mb-6">Upload foto dan video dokumentasi kegiatan penelitian dan pengabdian masyarakat</p>
+        <p class="text-gray-500 text-sm mb-6">
+            Upload foto dan video dokumentasi kegiatan penelitian dan pengabdian masyarakat
+        </p>
 
         <form action="#" method="POST" enctype="multipart/form-data" class="space-y-4">
             @csrf
-            <input type="text" name="judul" placeholder="Masukkan judul dokumentasi" class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
-            <input type="file" name="file" class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <input type="text" name="judul" placeholder="Masukkan judul dokumentasi"
+                class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <input type="file" name="file"
+                class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
 
-            <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-lg transition duration-200">
+            <button type="submit"
+                class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-lg transition duration-200">
                 Upload Sekarang
             </button>
         </form>
 
         {{-- Tombol Google Drive --}}
         <div class="mt-6">
-            <a href="https://drive.google.com" target="_blank" class="flex justify-center items-center space-x-3 border border-gray-300 py-2 rounded-lg hover:bg-gray-100 transition">
+            <a href="https://drive.google.com" target="_blank"
+                class="flex justify-center items-center space-x-3 border border-gray-300 py-2 rounded-lg hover:bg-gray-100 transition">
                 {{-- Logo "G" berwarna Google --}}
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" class="w-6 h-6">
-                    <path fill="#EA4335" d="M24 9.5c3.9 0 7 1.6 9.2 3.8l6.8-6.8C35.5 2.6 30.2 0 24 0 14.6 0 6.7 5.4 2.6 13.2l7.9 6.1C12.2 13.1 17.5 9.5 24 9.5z"/>
-                    <path fill="#34A853" d="M46.1 24.5c0-1.6-.1-3.2-.4-4.7H24v9h12.5c-.6 3.1-2.4 5.7-5 7.5l7.7 6c4.5-4.2 7.1-10.4 7.1-17.8z"/>
-                    <path fill="#FBBC05" d="M10.5 28.7c-.5-1.4-.8-2.9-.8-4.5s.3-3.1.8-4.5l-7.9-6.1C1 17.2 0 20.5 0 24s1 6.8 2.6 10.4l7.9-5.7z"/>
-                    <path fill="#4285F4" d="M24 48c6.2 0 11.5-2 15.3-5.5l-7.7-6c-2.1 1.4-4.8 2.2-7.6 2.2-6.5 0-11.8-4.4-13.8-10.4l-7.9 6.1C6.7 42.6 14.6 48 24 48z"/>
+                    <path fill="#EA4335"
+                        d="M24 9.5c3.9 0 7 1.6 9.2 3.8l6.8-6.8C35.5 2.6 30.2 0 24 0 14.6 0 6.7 5.4 2.6 13.2l7.9 6.1C12.2 13.1 17.5 9.5 24 9.5z" />
+                    <path fill="#34A853"
+                        d="M46.1 24.5c0-1.6-.1-3.2-.4-4.7H24v9h12.5c-.6 3.1-2.4 5.7-5 7.5l7.7 6c4.5-4.2 7.1-10.4 7.1-17.8z" />
+                    <path fill="#FBBC05"
+                        d="M10.5 28.7c-.5-1.4-.8-2.9-.8-4.5s.3-3.1.8-4.5l-7.9-6.1C1 17.2 0 20.5 0 24s1 6.8 2.6 10.4l7.9-5.7z" />
+                    <path fill="#4285F4"
+                        d="M24 48c6.2 0 11.5-2 15.3-5.5l-7.7-6c-2.1 1.4-4.8 2.2-7.6 2.2-6.5 0-11.8-4.4-13.8-10.4l-7.9 6.1C6.7 42.6 14.6 48 24 48z" />
                 </svg>
                 <span class="font-semibold text-gray-700">Buka Google Drive</span>
             </a>
