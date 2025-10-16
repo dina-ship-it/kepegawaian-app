@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login Administrator</title>
+  <title>SIP3D - Login Administrator</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
   <style>
@@ -78,7 +78,7 @@
     <i class="bi bi-person-fill-lock"></i>
   </div>
   <h3 class="fw-bold">Login Administrator</h3>
-  <p class="text-muted mb-4">SIP2D - Sistem Informasi Pengabdian, Penelitian, dan Prestasi Dosen</p>
+  <p class="text-muted mb-4">SIP3D - Sistem Informasi Pengabdian, Penelitian, dan Prestasi Dosen</p>
 
   <!-- Tombol Google -->
   <a href="{{ route('login.google.redirect') }}" class="btn btn-google w-100 py-2 mb-2">

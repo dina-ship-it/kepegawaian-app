@@ -6,17 +6,21 @@ use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
-    // ===============================
-    // PILIH LOGIN
-    // ===============================
+    /*
+    |--------------------------------------------------------------------------
+    | PILIH LOGIN
+    |--------------------------------------------------------------------------
+    */
     public function pilihLogin()
     {
         return view('auth.pilih_login');
     }
 
-    // ===============================
-    // ADMIN LOGIN
-    // ===============================
+    /*
+    |--------------------------------------------------------------------------
+    | ADMIN LOGIN
+    |--------------------------------------------------------------------------
+    */
     public function showAdminLoginForm()
     {
         return view('auth.login_admin');
@@ -24,7 +28,11 @@ class AuthController extends Controller
 
     public function adminLogin(Request $request)
     {
-        // Login manual contoh
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
+
         if ($request->email === 'admin@gmail.com' && $request->password === 'admin123') {
             return redirect()->route('admin.dashboard')->with('success', 'Login admin berhasil!');
         }
@@ -32,9 +40,11 @@ class AuthController extends Controller
         return back()->withErrors(['email' => 'Email atau password salah.']);
     }
 
-    // ===============================
-    // DOSEN LOGIN
-    // ===============================
+    /*
+    |--------------------------------------------------------------------------
+    | DOSEN LOGIN
+    |--------------------------------------------------------------------------
+    */
     public function showDosenLoginForm()
     {
         return view('auth.login_dosen');
@@ -42,6 +52,11 @@ class AuthController extends Controller
 
     public function dosenLogin(Request $request)
     {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
+
         if ($request->email === 'dosen@gmail.com' && $request->password === 'dosen123') {
             return redirect()->route('dosen.dashboard')->with('success', 'Login dosen berhasil!');
         }
@@ -49,9 +64,11 @@ class AuthController extends Controller
         return back()->withErrors(['email' => 'Email atau password salah.']);
     }
 
-    // ===============================
-    // MAHASISWA LOGIN
-    // ===============================
+    /*
+    |--------------------------------------------------------------------------
+    | MAHASISWA LOGIN
+    |--------------------------------------------------------------------------
+    */
     public function showMahasiswaLoginForm()
     {
         return view('auth.login_mahasiswa');
@@ -59,6 +76,11 @@ class AuthController extends Controller
 
     public function mahasiswaLogin(Request $request)
     {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
+
         if ($request->email === 'mahasiswa@gmail.com' && $request->password === 'mahasiswa123') {
             return redirect()->route('mahasiswa.dashboard')->with('success', 'Login mahasiswa berhasil!');
         }
@@ -66,16 +88,16 @@ class AuthController extends Controller
         return back()->withErrors(['email' => 'Email atau password salah.']);
     }
 
-    // ===============================
-    // LOGOUT
-    // ===============================
+    /*
+    |--------------------------------------------------------------------------
+    | LOGOUT
+    |--------------------------------------------------------------------------
+    */
     public function logout(Request $request)
     {
-        // Hapus session login (meskipun di sini manual login)
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        // Arahkan ke halaman pilih login
         return redirect()->route('login.pilih')->with('success', 'Berhasil logout!');
     }
 }

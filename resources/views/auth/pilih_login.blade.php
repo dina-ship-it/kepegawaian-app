@@ -9,7 +9,7 @@
 <body class="bg-light d-flex vh-100 justify-content-center align-items-center">
 
   <div class="container text-center">
-    <h2 class="mb-3 fw-bold">SIP2D</h2>
+    <h2 class="mb-3 fw-bold">SIP3D</h2>
     <p class="mb-4">Pilih jenis akun untuk masuk ke sistem</p>
     <div class="row justify-content-center">
       
