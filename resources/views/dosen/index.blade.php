@@ -1,53 +1,68 @@
 @extends('layouts.app')
 
-@section('content')
-<div class="container">
-    <h2 class="mb-4">📋 Data Dosen</h2>
+@section('title', 'Data Dosen')
 
+@section('content')
+<div class="max-w-7xl mx-auto p-6">
+    <h1 class="text-2xl font-semibold mb-6 text-gray-700">📘 Data Dosen</h1>
+
+    <!-- Tombol Tambah -->
+    <div class="mb-4">
+        <a href="{{ route('dosen.create') }}" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-md">
+            + Tambah Dosen
+        </a>
+    </div>
+
+    <!-- Notifikasi -->
     @if (session('success'))
-        <div class="alert alert-success">{{ session('success') }}</div>
+        <div class="mb-4 bg-green-100 border border-green-400 text-green-700 px-4 py-2 rounded-md">
+            {{ session('success') }}
+        </div>
     @endif
 
-    <a href="{{ route('dosen.create') }}" class="btn btn-success mb-3">+ Tambah Dosen</a>
-
-    <table class="table table-bordered">
-        <thead class="table-primary">
-            <tr>
-                <th>No</th>
-                <th>NIDN</th>
-                <th>Nama</th>
-                <th>Email</th>
-                <th>Prodi</th>
-                <th>Jabatan</th>
-                <th>Tahun</th>
-                <th>Aksi</th>
-            </tr>
-        </thead>
-        <tbody>
-            @forelse ($dosens as $key => $dosen)
+    <!-- Table -->
+    <div class="bg-white shadow rounded-lg overflow-hidden">
+        <table class="min-w-full border border-gray-200 text-sm">
+            <thead class="bg-gray-100 text-gray-700">
                 <tr>
-                    <td>{{ $key + 1 }}</td>
-                    <td>{{ $dosen->nidn }}</td>
-                    <td>{{ $dosen->nama }}</td>
-                    <td>{{ $dosen->email }}</td>
-                    <td>{{ $dosen->prodi }}</td>
-                    <td>{{ $dosen->jabatan }}</td>
-                    <td>{{ $dosen->tahun }}</td>
-                    <td>
-                        <a href="{{ route('dosen.edit', $dosen->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                        <form action="{{ route('dosen.destroy', $dosen->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Yakin ingin menghapus data ini?');">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
-                        </form>
-                    </td>
+                    <th class="py-3 px-4 text-center">No</th>
+                    <th class="py-3 px-4 text-left">NIDN</th>
+                    <th class="py-3 px-4 text-left">Nama</th>
+                    <th class="py-3 px-4 text-left">Email</th>
+                    <th class="py-3 px-4 text-left">Prodi</th>
+                    <th class="py-3 px-4 text-left">Jabatan</th>
+                    <th class="py-3 px-4 text-left">Tahun</th>
+                    <th class="py-3 px-4 text-center">Aksi</th>
                 </tr>
-            @empty
-                <tr>
-                    <td colspan="8" class="text-center text-muted">Belum ada data dosen.</td>
-                </tr>
-            @endforelse
-        </tbody>
-    </table>
+            </thead>
+            <tbody class="divide-y divide-gray-100 text-gray-700">
+                @forelse ($dosen as $index => $item)
+                    <tr class="hover:bg-gray-50">
+                        <td class="py-2 px-4 text-center">{{ $index + 1 }}</td>
+                        <td class="py-2 px-4">{{ $item->nidn }}</td>
+                        <td class="py-2 px-4">{{ $item->nama }}</td>
+                        <td class="py-2 px-4">{{ $item->email }}</td>
+                        <td class="py-2 px-4">{{ $item->prodi }}</td>
+                        <td class="py-2 px-4">{{ $item->jabatan }}</td>
+                        <td class="py-2 px-4">{{ $item->tahun }}</td>
+                        <td class="py-2 px-4 text-center">
+                            <a href="{{ route('dosen.edit', $item->id) }}" class="text-blue-600 hover:underline">Edit</a> |
+                            <form action="{{ route('dosen.destroy', $item->id) }}" method="POST" class="inline">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="text-red-600 hover:underline" onclick="return confirm('Hapus data ini?')">
+                                    Hapus
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="8" class="text-center py-4 text-gray-500">Belum ada data dosen.</td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
 </div>
 @endsection

@@ -10,8 +10,9 @@ class DosenController extends Controller
     // 🔹 Tampilkan semua dosen
     public function index()
     {
-        $dosens = Dosen::latest()->get();
-        return view('dosen.index', compact('dosens'));
+        // variabel disamakan dengan yang dipakai di Blade (tidak error lagi)
+        $dosen = Dosen::latest()->get();
+        return view('dosen.index', compact('dosen'));
     }
 
     // 🔹 Form tambah dosen
@@ -77,7 +78,7 @@ class DosenController extends Controller
             'penelitian' => \App\Models\Penelitian::count(),
             'pengabdian' => \App\Models\Pengabdian::count(),
             'prestasi' => \App\Models\Prestasi::count(),
-            'publikasi' => 0, // nanti bisa diganti kalau sudah ada tabel publikasi
+            'publikasi' => 0,
         ];
 
         return view('dosen.dashboard', compact('data'));
