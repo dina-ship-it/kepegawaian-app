@@ -43,7 +43,9 @@ Route::post('/login/mahasiswa', [AuthController::class, 'mahasiswaLogin'])->name
 // 🎓 DASHBOARD MAHASISWA
 // ===============================
 Route::get('/mahasiswa/dashboard', [MahasiswaController::class, 'index'])->name('mahasiswa.dashboard');
-Route::post('/mahasiswa/upload', [MahasiswaController::class, 'storeUpload'])->name('mahasiswa.storeUpload');
+
+// ✅ Perbaikan route upload mahasiswa (biar sama dengan yang di Blade)
+Route::post('/mahasiswa/upload', [MahasiswaController::class, 'uploadStore'])->name('mahasiswa.upload.store');
 
 // ===============================
 // 👨‍🏫 DASHBOARD DOSEN
@@ -51,7 +53,7 @@ Route::post('/mahasiswa/upload', [MahasiswaController::class, 'storeUpload'])->n
 Route::get('/dosen/dashboard', [DosenController::class, 'dashboard'])->name('dosen.dashboard');
 
 // ===============================
-// 📚 PENELITIAN (resource wajib sebelum dashboard admin!)
+// 📚 PENELITIAN
 // ===============================
 Route::resource('penelitian', PenelitianController::class);
 
