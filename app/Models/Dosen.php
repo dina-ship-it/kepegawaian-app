@@ -13,11 +13,8 @@ class Dosen extends Model
         'nidn',
         'nama',
         'email',
-        'fakultas',
         'prodi',
         'jabatan',
         'tahun',
-        'status',
-        'password',
     ];
 }

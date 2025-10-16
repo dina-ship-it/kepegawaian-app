@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Dashboard Mahasiswa')
+
 @section('content')
 <div class="min-h-screen bg-gray-50 flex flex-col items-center py-10">
 
@@ -11,13 +13,28 @@
         </p>
     </div>
 
+    {{-- Notifikasi Sukses / Error --}}
+    @if (session('success'))
+        <div class="bg-green-100 text-green-700 border border-green-300 px-4 py-2 rounded-lg mb-4 w-full max-w-md text-center">
+            {{ session('success') }}
+        </div>
+    @elseif ($errors->any())
+        <div class="bg-red-100 text-red-700 border border-red-300 px-4 py-2 rounded-lg mb-4 w-full max-w-md text-center">
+            <ul class="list-disc list-inside text-sm">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     {{-- Statistik --}}
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-5xl mb-10">
         <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 flex flex-col items-center">
             <div class="bg-green-100 text-green-600 p-4 rounded-full mb-3">
                 <i class="fas fa-image text-2xl"></i>
             </div>
-            <h3 class="text-3xl font-bold">0</h3>
+            <h3 class="text-3xl font-bold">{{ $fotoCount ?? 0 }}</h3>
             <p class="text-gray-500">Foto Dokumentasi</p>
         </div>
 
@@ -25,7 +42,7 @@
             <div class="bg-purple-100 text-purple-600 p-4 rounded-full mb-3">
                 <i class="fas fa-video text-2xl"></i>
             </div>
-            <h3 class="text-3xl font-bold">0</h3>
+            <h3 class="text-3xl font-bold">{{ $videoCount ?? 0 }}</h3>
             <p class="text-gray-500">Video Dokumentasi</p>
         </div>
 
@@ -33,7 +50,7 @@
             <div class="bg-blue-100 text-blue-600 p-4 rounded-full mb-3">
                 <i class="fas fa-file-alt text-2xl"></i>
             </div>
-            <h3 class="text-3xl font-bold">0</h3>
+            <h3 class="text-3xl font-bold">{{ $totalCount ?? 0 }}</h3>
             <p class="text-gray-500">Total Dokumentasi</p>
         </div>
     </div>
@@ -48,12 +65,12 @@
             Upload foto dan video dokumentasi kegiatan penelitian dan pengabdian masyarakat
         </p>
 
-        <form action="#" method="POST" enctype="multipart/form-data" class="space-y-4">
+        <form action="{{ route('mahasiswa.upload.store') }}" method="POST" enctype="multipart/form-data" class="space-y-4">
             @csrf
             <input type="text" name="judul" placeholder="Masukkan judul dokumentasi"
-                class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" required>
             <input type="file" name="file"
-                class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" required>
 
             <button type="submit"
                 class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-lg transition duration-200">
@@ -65,7 +82,6 @@
         <div class="mt-6">
             <a href="https://drive.google.com" target="_blank"
                 class="flex justify-center items-center space-x-3 border border-gray-300 py-2 rounded-lg hover:bg-gray-100 transition">
-                {{-- Logo "G" berwarna Google --}}
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" class="w-6 h-6">
                     <path fill="#EA4335"
                         d="M24 9.5c3.9 0 7 1.6 9.2 3.8l6.8-6.8C35.5 2.6 30.2 0 24 0 14.6 0 6.7 5.4 2.6 13.2l7.9 6.1C12.2 13.1 17.5 9.5 24 9.5z" />

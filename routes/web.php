@@ -42,10 +42,7 @@ Route::post('/login/mahasiswa', [AuthController::class, 'mahasiswaLogin'])->name
 // ===============================
 // 🎓 DASHBOARD MAHASISWA
 // ===============================
-// gunakan method index() karena di controller kamu namanya index()
 Route::get('/mahasiswa/dashboard', [MahasiswaController::class, 'index'])->name('mahasiswa.dashboard');
-
-// route untuk upload dokumentasi
 Route::post('/mahasiswa/upload', [MahasiswaController::class, 'storeUpload'])->name('mahasiswa.storeUpload');
 
 // ===============================
@@ -54,12 +51,7 @@ Route::post('/mahasiswa/upload', [MahasiswaController::class, 'storeUpload'])->n
 Route::get('/dosen/dashboard', [DosenController::class, 'dashboard'])->name('dosen.dashboard');
 
 // ===============================
-// 👨‍🏫 CRUD DOSEN
-// ===============================
-Route::resource('dosen', DosenController::class);
-
-// ===============================
-// 📚 PENELITIAN
+// 📚 PENELITIAN (resource wajib sebelum dashboard admin!)
 // ===============================
 Route::resource('penelitian', PenelitianController::class);
 
@@ -72,6 +64,11 @@ Route::resource('pengabdian', PengabdianController::class);
 // 🏆 PRESTASI
 // ===============================
 Route::resource('prestasi', PrestasiController::class);
+
+// ===============================
+// 👨‍🏫 CRUD DOSEN
+// ===============================
+Route::resource('dosen', DosenController::class);
 
 // ===============================
 // 🎓 CRUD MAHASISWA

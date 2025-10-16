@@ -1,157 +1,84 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SIP2D - Dashboard Administrator</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-    <style>
-        body {
-            background-color: #f8fafc;
-            font-family: 'Poppins', sans-serif;
-        }
+@extends('layouts.app')
 
-        .dashboard-header {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 30px;
-        }
+@section('title', 'Dashboard Administrator')
 
-        .card-stat {
-            border: none;
-            border-radius: 12px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-            transition: transform 0.2s;
-        }
+@section('content')
+<div class="space-y-8">
 
-        .card-stat:hover {
-            transform: translateY(-3px);
-        }
-
-        .card-icon {
-            font-size: 40px;
-            margin-bottom: 10px;
-        }
-
-        .logout-btn {
-            background-color: #dc3545;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            padding: 8px 15px;
-        }
-
-        .logout-btn:hover {
-            background-color: #bb2d3b;
-        }
-
-        .header-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: white;
-            padding: 15px 25px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-            border-radius: 0 0 12px 12px;
-        }
-
-        .main-content {
-            padding: 40px;
-        }
-
-        .btn-manage {
-            border-radius: 6px;
-        }
-    </style>
-</head>
-<body>
-    <div class="header-top">
-        <h4 class="m-0 fw-bold">SIP2D - Dashboard Administrator</h4>
-        <form action="{{ route('logout') }}" method="POST" class="m-0">
-            @csrf
-            <button type="submit" class="logout-btn"><i class="bi bi-box-arrow-right"></i> Logout</button>
-        </form>
+    <!-- Judul -->
+    <div>
+        <h1 class="text-2xl font-semibold text-gray-800 mb-2">SIP2D - Dashboard Administrator</h1>
+        <p class="text-gray-500 text-sm">Selamat datang di panel kontrol sistem penelitian dan pengabdian</p>
     </div>
 
-    <div class="main-content">
-        <div class="dashboard-header">Administrator Dashboard</div>
-
-        <!-- Statistik -->
-        <div class="row g-3 mb-4">
-            <div class="col-md-3">
-                <div class="card card-stat text-center p-3">
-                    <i class="bi bi-person card-icon text-primary"></i>
-                    <h3>45</h3>
-                    <p>Total Dosen</p>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card card-stat text-center p-3">
-                    <i class="bi bi-mortarboard card-icon text-success"></i>
-                    <h3>1250</h3>
-                    <p>Total Mahasiswa</p>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card card-stat text-center p-3">
-                    <i class="bi bi-beaker card-icon text-purple"></i>
-                    <h3>78</h3>
-                    <p>Total Penelitian</p>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card card-stat text-center p-3">
-                    <i class="bi bi-building card-icon text-warning"></i>
-                    <h3>32</h3>
-                    <p>Total Pengabdian</p>
-                </div>
-            </div>
+    <!-- Statistik Utama -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="bg-white shadow rounded-xl p-6 text-center border border-gray-100">
+            <i class="bi bi-person text-4xl text-blue-600 mb-3"></i>
+            <h2 class="text-3xl font-bold text-gray-800">45</h2>
+            <p class="text-gray-500 text-sm">Total Dosen</p>
         </div>
 
-        <!-- Menu Kelola -->
-        <div class="row g-3">
-            <div class="col-md-4">
-                <div class="card p-3 text-center">
-                    <i class="bi bi-person fs-1 text-primary"></i>
-                    <h5>Kelola Dosen</h5>
-                    <p>Tambah, edit, dan hapus data dosen</p>
-                    <a href="{{ route('dosen.index') }}" class="btn btn-outline-primary btn-manage">Kelola</a>
-                </div>
+        <div class="bg-white shadow rounded-xl p-6 text-center border border-gray-100">
+            <i class="bi bi-mortarboard text-4xl text-green-600 mb-3"></i>
+            <h2 class="text-3xl font-bold text-gray-800">1250</h2>
+            <p class="text-gray-500 text-sm">Total Mahasiswa</p>
+        </div>
+
+        <div class="bg-white shadow rounded-xl p-6 text-center border border-gray-100">
+            <i class="bi bi-journal-text text-4xl text-purple-600 mb-3"></i>
+            <h2 class="text-3xl font-bold text-gray-800">78</h2>
+            <p class="text-gray-500 text-sm">Total Penelitian</p>
+        </div>
+
+        <div class="bg-white shadow rounded-xl p-6 text-center border border-gray-100">
+            <i class="bi bi-building text-4xl text-yellow-600 mb-3"></i>
+            <h2 class="text-3xl font-bold text-gray-800">32</h2>
+            <p class="text-gray-500 text-sm">Total Pengabdian</p>
+        </div>
+    </div>
+
+    <!-- Menu Kelola -->
+    <div>
+        <h2 class="text-xl font-semibold text-gray-700 mb-4">Kelola Data</h2>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="bg-white shadow rounded-xl p-6 text-center border border-gray-100">
+                <i class="bi bi-person-lines-fill text-4xl text-blue-600 mb-3"></i>
+                <h3 class="font-semibold text-gray-800 text-lg mb-1">Kelola Dosen</h3>
+                <p class="text-gray-500 text-sm mb-4">Tambah, edit, dan hapus data dosen</p>
+                <a href="{{ route('dosen.index') }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">Kelola</a>
             </div>
-            <div class="col-md-4">
-                <div class="card p-3 text-center">
-                    <i class="bi bi-mortarboard fs-1 text-success"></i>
-                    <h5>Kelola Mahasiswa</h5>
-                    <p>Tambah, edit, dan hapus data mahasiswa</p>
-                    <a href="{{ route('mahasiswa.index') }}" class="btn btn-outline-success btn-manage">Kelola</a>
-                </div>
+
+            <div class="bg-white shadow rounded-xl p-6 text-center border border-gray-100">
+                <i class="bi bi-mortarboard text-4xl text-green-600 mb-3"></i>
+                <h3 class="font-semibold text-gray-800 text-lg mb-1">Kelola Mahasiswa</h3>
+                <p class="text-gray-500 text-sm mb-4">Tambah, edit, dan hapus data mahasiswa</p>
+                <a href="{{ route('mahasiswa.index') }}" class="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700">Kelola</a>
             </div>
-            <div class="col-md-4">
-                <div class="card p-3 text-center">
-                    <i class="bi bi-beaker fs-1 text-purple"></i>
-                    <h5>Kelola Penelitian</h5>
-                    <p>Monitor dan kelola data penelitian</p>
-                    <a href="{{ route('penelitian.index') }}" class="btn btn-outline-dark btn-manage">Kelola</a>
-                </div>
+
+            <div class="bg-white shadow rounded-xl p-6 text-center border border-gray-100">
+                <i class="bi bi-journal-text text-4xl text-purple-600 mb-3"></i>
+                <h3 class="font-semibold text-gray-800 text-lg mb-1">Kelola Penelitian</h3>
+                <p class="text-gray-500 text-sm mb-4">Monitor dan kelola data penelitian</p>
+                <a href="{{ route('penelitian.index') }}" class="bg-purple-600 text-white px-4 py-2 rounded-md hover:bg-purple-700">Kelola</a>
             </div>
-            <div class="col-md-4">
-                <div class="card p-3 text-center">
-                    <i class="bi bi-building fs-1 text-warning"></i>
-                    <h5>Kelola Pengabdian</h5>
-                    <p>Monitor dan kelola data pengabdian</p>
-                    <a href="{{ route('pengabdian.index') }}" class="btn btn-outline-warning btn-manage">Kelola</a>
-                </div>
+
+            <div class="bg-white shadow rounded-xl p-6 text-center border border-gray-100">
+                <i class="bi bi-building text-4xl text-yellow-600 mb-3"></i>
+                <h3 class="font-semibold text-gray-800 text-lg mb-1">Kelola Pengabdian</h3>
+                <p class="text-gray-500 text-sm mb-4">Monitor dan kelola data pengabdian</p>
+                <a href="{{ route('pengabdian.index') }}" class="bg-yellow-500 text-white px-4 py-2 rounded-md hover:bg-yellow-600">Kelola</a>
             </div>
-            <div class="col-md-4">
-                <div class="card p-3 text-center">
-                    <i class="bi bi-trophy fs-1 text-danger"></i>
-                    <h5>Kelola Prestasi</h5>
-                    <p>Monitor dan kelola data prestasi</p>
-                    <a href="{{ route('prestasi.index') }}" class="btn btn-outline-danger btn-manage">Kelola</a>
-                </div>
+
+            <div class="bg-white shadow rounded-xl p-6 text-center border border-gray-100">
+                <i class="bi bi-trophy text-4xl text-red-600 mb-3"></i>
+                <h3 class="font-semibold text-gray-800 text-lg mb-1">Kelola Prestasi</h3>
+                <p class="text-gray-500 text-sm mb-4">Monitor dan kelola data prestasi</p>
+                <a href="{{ route('prestasi.index') }}" class="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700">Kelola</a>
             </div>
         </div>
     </div>
-</body>
-</html>
+
+</div>
+@endsection
