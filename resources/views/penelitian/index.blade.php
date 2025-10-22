@@ -6,10 +6,19 @@
 <div class="max-w-6xl mx-auto">
     <div class="flex justify-between items-center mb-6">
         <h1 class="text-3xl font-bold text-gray-800">Data Penelitian</h1>
-        <a href="{{ route('penelitian.create') }}" 
-           class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg shadow">
-           + Tambah Penelitian
-        </a>
+        <div class="flex space-x-2">
+            <!-- Tombol Export Excel -->
+            <a href="{{ route('penelitian.export') }}" 
+               class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg shadow">
+               ⬇️ Export Excel
+            </a>
+
+            <!-- Tombol Tambah Penelitian -->
+            <a href="{{ route('penelitian.create') }}" 
+               class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg shadow">
+               + Tambah Penelitian
+            </a>
+        </div>
     </div>
 
     {{-- Tabel Data --}}

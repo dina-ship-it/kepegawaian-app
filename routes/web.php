@@ -9,6 +9,11 @@ use App\Http\Controllers\PengabdianController;
 use App\Http\Controllers\PrestasiController;
 use App\Http\Controllers\GoogleController;
 
+// ✅ Tambahan untuk fitur export Excel
+use App\Exports\PenelitianExport;
+use App\Exports\PengabdianExport;
+use Maatwebsite\Excel\Facades\Excel;
+
 // ===============================
 // 🌐 HALAMAN UTAMA
 // ===============================
@@ -43,8 +48,6 @@ Route::post('/login/mahasiswa', [AuthController::class, 'mahasiswaLogin'])->name
 // 🎓 DASHBOARD MAHASISWA
 // ===============================
 Route::get('/mahasiswa/dashboard', [MahasiswaController::class, 'index'])->name('mahasiswa.dashboard');
-
-// ✅ Perbaikan route upload mahasiswa (biar sama dengan yang di Blade)
 Route::post('/mahasiswa/upload', [MahasiswaController::class, 'uploadStore'])->name('mahasiswa.upload.store');
 
 // ===============================
@@ -55,11 +58,17 @@ Route::get('/dosen/dashboard', [DosenController::class, 'dashboard'])->name('dos
 // ===============================
 // 📚 PENELITIAN
 // ===============================
+// Route export Excel
+Route::get('/penelitian/export', [PenelitianController::class, 'export'])->name('penelitian.export');
+// Route CRUD penelitian
 Route::resource('penelitian', PenelitianController::class);
 
 // ===============================
 // 🌍 PENGABDIAN
 // ===============================
+// Route export Excel
+Route::get('/pengabdian/export', [PengabdianController::class, 'export'])->name('pengabdian.export');
+// Route CRUD pengabdian
 Route::resource('pengabdian', PengabdianController::class);
 
 // ===============================
