@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'SIP3D - Admin')</title>
+
+    <!-- Judul halaman -->
+    <title>{{ config('app.name', 'SIP3D') }} - @yield('title', 'Dashboard')</title>
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -22,7 +24,13 @@
 
     <style>
         body { font-family: 'Inter', sans-serif; }
-        .nav-link { @apply hover:text-gray-200 transition-colors duration-200; }
+        .nav-link {
+            color: white;
+            transition: color 0.2s ease-in-out;
+        }
+        .nav-link:hover {
+            color: #E0E7FF; /* Warna abu kebiruan saat hover */
+        }
     </style>
 </head>
 
@@ -39,7 +47,9 @@
                 <div class="bg-white text-indigo-600 px-3 py-1 rounded-md font-bold shadow-sm">
                     <i class="fa-solid fa-book"></i>
                 </div>
-                <h1 class="text-xl font-semibold tracking-wide">SIP3D</h1>
+                <h1 class="text-xl font-semibold tracking-wide">
+                    {{ config('app.name', 'SIP3D') }}
+                </h1>
             </div>
 
             <!-- Menu -->
@@ -75,7 +85,7 @@
     <!-- =============================== -->
     <footer class="bg-white border-t mt-10 py-6 text-center text-gray-500 text-sm shadow-inner">
         &copy; {{ date('Y') }}
-        <strong>SIP3D</strong> |
+        <strong>{{ config('app.name', 'SIP3D') }}</strong> |
         Sistem Informasi Penelitian & Pengabdian kepada Masyarakat
     </footer>
 

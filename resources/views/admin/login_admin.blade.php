@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Administrator - SIP2D</title>
+    <title>Login Administrator - SIP3D</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -48,7 +48,7 @@
             </div>
             <h4 class="fw-bold">Login Administrator</h4>
             <p class="text-muted" style="font-size: 14px;">
-                SIP2D - Sistem Informasi Pengabdian, Penelitian, dan Prestasi Dosen
+                SIP3D - Sistem Informasi Pengabdian, Penelitian, dan Prestasi Dosen
             </p>
         </div>
 

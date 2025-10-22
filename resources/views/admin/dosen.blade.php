@@ -4,7 +4,7 @@
 <div class="p-8 bg-gray-50 min-h-screen">
     <!-- Header -->
     <div class="flex justify-between items-center mb-8">
-        <h1 class="text-2xl font-bold text-gray-800">SIP2D - Kelola Dosen</h1>
+        <h1 class="text-2xl font-bold text-gray-800">SIP3D - Kelola Dosen</h1>
         <div class="flex items-center gap-3">
             <span class="text-gray-600 font-semibold">Administrator</span>
             <form action="{{ route('logout') }}" method="POST">

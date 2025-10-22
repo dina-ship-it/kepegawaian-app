@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pilih Login - SIP2D</title>
+    <title>Pilih Login - SIP3D</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -64,7 +64,7 @@
         @endif
 
         <div class="footer">
-            &copy; {{ date('Y') }} Sistem Informasi Pengabdian & Penelitian Dosen (SIP2D)
+            &copy; {{ date('Y') }} Sistem Informasi Pengabdian & Penelitian Dosen (SIP3D)
         </div>
     </div>
 </body>

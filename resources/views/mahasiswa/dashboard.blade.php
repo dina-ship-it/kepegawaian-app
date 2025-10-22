@@ -7,7 +7,7 @@
 
     {{-- Judul --}}
     <div class="text-center mt-10 mb-6">
-        <h2 class="text-xl font-semibold text-gray-800">SIP2D - Dashboard Mahasiswa</h2>
+        <h2 class="text-xl font-semibold text-gray-800">SIP3D - Dashboard Mahasiswa</h2>
         <p class="text-gray-500 mt-1">
             Upload dokumentasi foto dan video kegiatan penelitian serta pengabdian masyarakat
         </p>

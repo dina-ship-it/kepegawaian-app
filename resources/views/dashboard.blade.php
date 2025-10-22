@@ -7,7 +7,7 @@
 </head>
 <body class="bg-light d-flex vh-100 justify-content-center align-items-center">
   <div class="text-center">
-    <h2>Selamat Datang di Dashboard SIP2D 🎉</h2>
+    <h2>Selamat Datang di Dashboard SIP3D 🎉</h2>
     <p class="mt-2">Login berhasil! Kamu berhasil masuk ke sistem.</p>
     <a href="/login/pilih" class="btn btn-secondary mt-3">Kembali ke Pilih Login</a>
   </div>

@@ -5,7 +5,7 @@
 @section('content')
 <div class="max-w-7xl mx-auto">
     <!-- Judul -->
-    <h2 class="text-2xl font-bold mb-6">SIP2D - Kelola Prestasi</h2>
+    <h2 class="text-2xl font-bold mb-6">SIP3D - Kelola Prestasi</h2>
 
     <!-- Kartu Statistik -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">

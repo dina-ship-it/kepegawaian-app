@@ -54,7 +54,7 @@
       <i class="bi bi-person-fill"></i>
     </div>
     <h4 class="text-center fw-bold">Login Dosen</h4>
-    <p class="subtitle">SIP2D - Sistem Informasi Pengabdian, Penelitian, dan Prestasi Dosen</p>
+    <p class="subtitle">SIP3D - Sistem Informasi Pengabdian, Penelitian, dan Prestasi Dosen</p>
 
     @if($errors->any())
       <div class="alert alert-danger py-2">{{ $errors->first() }}</div>
