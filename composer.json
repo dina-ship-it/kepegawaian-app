@@ -1,23 +1,23 @@
 {
     "$schema": "https://getcomposer.org/schema.json",
-    "name": "laravel/laravel",
+    "name": "SIP3D/SIP3D",
     "type": "project",
-    "description": "The skeleton application for the Laravel framework.",
-    "keywords": ["laravel", "framework"],
+    "description": "The skeleton application for the SIP3D framework.",
+    "keywords": ["SIP3D", "framework"],
     "license": "MIT",
     "require": {
         "php": "^8.2",
         "google/apiclient": "2.15",
-        "laravel/framework": "^12.0",
-        "laravel/socialite": "^5.23",
-        "laravel/tinker": "^2.10.1",
-        "maatwebsite/excel": "3.1.x-dev"
+        "SIP3D/framework": "^12.0",
+        "SIP3D/socialite": "^5.23",
+        "SIP3D/tinker": "^2.10.1",
+        "maatwebsite/excel": "4.x-dev"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
-        "laravel/pail": "^1.2.2",
-        "laravel/pint": "^1.24",
-        "laravel/sail": "^1.41",
+        "SIP3D/pail": "^1.2.2",
+        "SIP3D/pint": "^1.24",
+        "SIP3D/sail": "^1.41",
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^8.6",
         "phpunit/phpunit": "^11.5.3"
@@ -40,7 +40,7 @@
             "@php artisan package:discover --ansi"
         ],
         "post-update-cmd": [
-            "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
+            "@php artisan vendor:publish --tag=SIP3D-assets --ansi --force"
         ],
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
@@ -60,7 +60,7 @@
         ]
     },
     "extra": {
-        "laravel": {
+        "SIP3D": {
             "dont-discover": []
         }
     },

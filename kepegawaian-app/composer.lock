@@ -561,7 +561,7 @@
             "homepage": "https://github.com/fruitcake/php-cors",
             "keywords": [
                 "cors",
-                "laravel",
+                "SIP3D",
                 "symfony"
             ],
             "support": {
@@ -1054,16 +1054,16 @@
             "time": "2025-08-22T14:27:06+00:00"
         },
         {
-            "name": "laravel/framework",
+            "name": "SIP3D/framework",
             "version": "v12.30.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/laravel/framework.git",
+                "url": "https://github.com/SIP3D/framework.git",
                 "reference": "7f61e8679f9142f282a0184ac7ef9e3834bfd023"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/7f61e8679f9142f282a0184ac7ef9e3834bfd023",
+                "url": "https://api.github.com/repos/SIP3D/framework/zipball/7f61e8679f9142f282a0184ac7ef9e3834bfd023",
                 "reference": "7f61e8679f9142f282a0184ac7ef9e3834bfd023",
                 "shasum": ""
             },
@@ -1083,8 +1083,8 @@
                 "fruitcake/php-cors": "^1.3",
                 "guzzlehttp/guzzle": "^7.8.2",
                 "guzzlehttp/uri-template": "^1.0",
-                "laravel/prompts": "^0.3.0",
-                "laravel/serializable-closure": "^1.3|^2.0",
+                "SIP3D/prompts": "^0.3.0",
+                "SIP3D/serializable-closure": "^1.3|^2.0",
                 "league/commonmark": "^2.7",
                 "league/flysystem": "^3.25.1",
                 "league/flysystem-local": "^3.25.1",
@@ -1169,7 +1169,7 @@
                 "fakerphp/faker": "^1.24",
                 "guzzlehttp/promises": "^2.0.3",
                 "guzzlehttp/psr7": "^2.4",
-                "laravel/pint": "^1.18",
+                "SIP3D/pint": "^1.18",
                 "league/flysystem-aws-s3-v3": "^3.25.1",
                 "league/flysystem-ftp": "^3.25.1",
                 "league/flysystem-path-prefixing": "^3.25.1",
@@ -1204,7 +1204,7 @@
                 "ext-redis": "Required to use the Redis cache and queue drivers (^4.0|^5.0|^6.0).",
                 "fakerphp/faker": "Required to generate fake data using the fake() helper (^1.23).",
                 "filp/whoops": "Required for friendly error pages in development (^2.14.3).",
-                "laravel/tinker": "Required to use the tinker console command (^2.0).",
+                "SIP3D/tinker": "Required to use the tinker console command (^2.0).",
                 "league/flysystem-aws-s3-v3": "Required to use the Flysystem S3 driver (^3.25.1).",
                 "league/flysystem-ftp": "Required to use the Flysystem FTP driver (^3.25.1).",
                 "league/flysystem-path-prefixing": "Required to use the scoped driver (^3.25.1).",
@@ -1258,32 +1258,32 @@
             "authors": [
                 {
                     "name": "Taylor Otwell",
-                    "email": "taylor@laravel.com"
+                    "email": "taylor@SIP3D.com"
                 }
             ],
-            "description": "The Laravel Framework.",
-            "homepage": "https://laravel.com",
+            "description": "The SIP3D Framework.",
+            "homepage": "https://SIP3D.com",
             "keywords": [
                 "framework",
-                "laravel"
+                "SIP3D"
             ],
             "support": {
-                "issues": "https://github.com/laravel/framework/issues",
-                "source": "https://github.com/laravel/framework"
+                "issues": "https://github.com/SIP3D/framework/issues",
+                "source": "https://github.com/SIP3D/framework"
             },
             "time": "2025-09-18T21:07:07+00:00"
         },
         {
-            "name": "laravel/prompts",
+            "name": "SIP3D/prompts",
             "version": "v0.3.6",
             "source": {
                 "type": "git",
-                "url": "https://github.com/laravel/prompts.git",
+                "url": "https://github.com/SIP3D/prompts.git",
                 "reference": "86a8b692e8661d0fb308cec64f3d176821323077"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/prompts/zipball/86a8b692e8661d0fb308cec64f3d176821323077",
+                "url": "https://api.github.com/repos/SIP3D/prompts/zipball/86a8b692e8661d0fb308cec64f3d176821323077",
                 "reference": "86a8b692e8661d0fb308cec64f3d176821323077",
                 "shasum": ""
             },
@@ -1295,7 +1295,7 @@
             },
             "conflict": {
                 "illuminate/console": ">=10.17.0 <10.25.0",
-                "laravel/framework": ">=10.17.0 <10.25.0"
+                "SIP3D/framework": ">=10.17.0 <10.25.0"
             },
             "require-dev": {
                 "illuminate/collections": "^10.0|^11.0|^12.0",
@@ -1318,7 +1318,7 @@
                     "src/helpers.php"
                 ],
                 "psr-4": {
-                    "Laravel\\Prompts\\": "src/"
+                    "SIP3D\\Prompts\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1327,22 +1327,22 @@
             ],
             "description": "Add beautiful and user-friendly forms to your command-line applications.",
             "support": {
-                "issues": "https://github.com/laravel/prompts/issues",
-                "source": "https://github.com/laravel/prompts/tree/v0.3.6"
+                "issues": "https://github.com/SIP3D/prompts/issues",
+                "source": "https://github.com/SIP3D/prompts/tree/v0.3.6"
             },
             "time": "2025-07-07T14:17:42+00:00"
         },
         {
-            "name": "laravel/serializable-closure",
+            "name": "SIP3D/serializable-closure",
             "version": "v2.0.4",
             "source": {
                 "type": "git",
-                "url": "https://github.com/laravel/serializable-closure.git",
+                "url": "https://github.com/SIP3D/serializable-closure.git",
                 "reference": "b352cf0534aa1ae6b4d825d1e762e35d43f8a841"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/serializable-closure/zipball/b352cf0534aa1ae6b4d825d1e762e35d43f8a841",
+                "url": "https://api.github.com/repos/SIP3D/serializable-closure/zipball/b352cf0534aa1ae6b4d825d1e762e35d43f8a841",
                 "reference": "b352cf0534aa1ae6b4d825d1e762e35d43f8a841",
                 "shasum": ""
             },
@@ -1364,7 +1364,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "Laravel\\SerializableClosure\\": "src/"
+                    "SIP3D\\SerializableClosure\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1374,36 +1374,36 @@
             "authors": [
                 {
                     "name": "Taylor Otwell",
-                    "email": "taylor@laravel.com"
+                    "email": "taylor@SIP3D.com"
                 },
                 {
                     "name": "Nuno Maduro",
-                    "email": "nuno@laravel.com"
+                    "email": "nuno@SIP3D.com"
                 }
             ],
-            "description": "Laravel Serializable Closure provides an easy and secure way to serialize closures in PHP.",
+            "description": "SIP3D Serializable Closure provides an easy and secure way to serialize closures in PHP.",
             "keywords": [
                 "closure",
-                "laravel",
+                "SIP3D",
                 "serializable"
             ],
             "support": {
-                "issues": "https://github.com/laravel/serializable-closure/issues",
-                "source": "https://github.com/laravel/serializable-closure"
+                "issues": "https://github.com/SIP3D/serializable-closure/issues",
+                "source": "https://github.com/SIP3D/serializable-closure"
             },
             "time": "2025-03-19T13:51:03+00:00"
         },
         {
-            "name": "laravel/tinker",
+            "name": "SIP3D/tinker",
             "version": "v2.10.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/laravel/tinker.git",
+                "url": "https://github.com/SIP3D/tinker.git",
                 "reference": "22177cc71807d38f2810c6204d8f7183d88a57d3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/tinker/zipball/22177cc71807d38f2810c6204d8f7183d88a57d3",
+                "url": "https://api.github.com/repos/SIP3D/tinker/zipball/22177cc71807d38f2810c6204d8f7183d88a57d3",
                 "reference": "22177cc71807d38f2810c6204d8f7183d88a57d3",
                 "shasum": ""
             },
@@ -1425,15 +1425,15 @@
             },
             "type": "library",
             "extra": {
-                "laravel": {
+                "SIP3D": {
                     "providers": [
-                        "Laravel\\Tinker\\TinkerServiceProvider"
+                        "SIP3D\\Tinker\\TinkerServiceProvider"
                     ]
                 }
             },
             "autoload": {
                 "psr-4": {
-                    "Laravel\\Tinker\\": "src/"
+                    "SIP3D\\Tinker\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1443,19 +1443,19 @@
             "authors": [
                 {
                     "name": "Taylor Otwell",
-                    "email": "taylor@laravel.com"
+                    "email": "taylor@SIP3D.com"
                 }
             ],
-            "description": "Powerful REPL for the Laravel framework.",
+            "description": "Powerful REPL for the SIP3D framework.",
             "keywords": [
                 "REPL",
                 "Tinker",
-                "laravel",
+                "SIP3D",
                 "psysh"
             ],
             "support": {
-                "issues": "https://github.com/laravel/tinker/issues",
-                "source": "https://github.com/laravel/tinker/tree/v2.10.1"
+                "issues": "https://github.com/SIP3D/tinker/issues",
+                "source": "https://github.com/SIP3D/tinker/tree/v2.10.1"
             },
             "time": "2025-01-27T14:24:01+00:00"
         },
@@ -2155,9 +2155,9 @@
             ],
             "type": "library",
             "extra": {
-                "laravel": {
+                "SIP3D": {
                     "providers": [
-                        "Carbon\\Laravel\\ServiceProvider"
+                        "Carbon\\SIP3D\\ServiceProvider"
                     ]
                 },
                 "phpstan": {
@@ -2448,7 +2448,7 @@
             },
             "require-dev": {
                 "illuminate/console": "^11.44.7",
-                "laravel/pint": "^1.22.0",
+                "SIP3D/pint": "^1.22.0",
                 "mockery/mockery": "^1.6.12",
                 "pestphp/pest": "^2.36.0 || ^3.8.2",
                 "phpstan/phpstan": "^1.12.25",
@@ -2458,9 +2458,9 @@
             },
             "type": "library",
             "extra": {
-                "laravel": {
+                "SIP3D": {
                     "providers": [
-                        "Termwind\\Laravel\\TermwindServiceProvider"
+                        "Termwind\\SIP3D\\TermwindServiceProvider"
                     ]
                 },
                 "branch-alias": {
@@ -2536,7 +2536,7 @@
             },
             "require-dev": {
                 "illuminate/support": "^11.45",
-                "laravel/pint": "^1.18.1",
+                "SIP3D/pint": "^1.18.1",
                 "orchestra/testbench": "^9.15",
                 "pestphp/pest": "^3.5.1",
                 "phpstan/extension-installer": "^1.4.3",
@@ -2545,9 +2545,9 @@
             },
             "type": "library",
             "extra": {
-                "laravel": {
+                "SIP3D": {
                     "providers": [
-                        "Phiki\\Adapters\\Laravel\\PhikiServiceProvider"
+                        "Phiki\\Adapters\\SIP3D\\PhikiServiceProvider"
                     ]
                 }
             },
@@ -6285,16 +6285,16 @@
             "time": "2025-04-30T06:54:44+00:00"
         },
         {
-            "name": "laravel/pail",
+            "name": "SIP3D/pail",
             "version": "v1.2.3",
             "source": {
                 "type": "git",
-                "url": "https://github.com/laravel/pail.git",
+                "url": "https://github.com/SIP3D/pail.git",
                 "reference": "8cc3d575c1f0e57eeb923f366a37528c50d2385a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/pail/zipball/8cc3d575c1f0e57eeb923f366a37528c50d2385a",
+                "url": "https://api.github.com/repos/SIP3D/pail/zipball/8cc3d575c1f0e57eeb923f366a37528c50d2385a",
                 "reference": "8cc3d575c1f0e57eeb923f366a37528c50d2385a",
                 "shasum": ""
             },
@@ -6310,8 +6310,8 @@
                 "symfony/console": "^6.0|^7.0"
             },
             "require-dev": {
-                "laravel/framework": "^10.24|^11.0|^12.0",
-                "laravel/pint": "^1.13",
+                "SIP3D/framework": "^10.24|^11.0|^12.0",
+                "SIP3D/pint": "^1.13",
                 "orchestra/testbench-core": "^8.13|^9.0|^10.0",
                 "pestphp/pest": "^2.20|^3.0",
                 "pestphp/pest-plugin-type-coverage": "^2.3|^3.0",
@@ -6320,9 +6320,9 @@
             },
             "type": "library",
             "extra": {
-                "laravel": {
+                "SIP3D": {
                     "providers": [
-                        "Laravel\\Pail\\PailServiceProvider"
+                        "SIP3D\\Pail\\PailServiceProvider"
                     ]
                 },
                 "branch-alias": {
@@ -6331,7 +6331,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "Laravel\\Pail\\": "src/"
+                    "SIP3D\\Pail\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -6341,39 +6341,39 @@
             "authors": [
                 {
                     "name": "Taylor Otwell",
-                    "email": "taylor@laravel.com"
+                    "email": "taylor@SIP3D.com"
                 },
                 {
                     "name": "Nuno Maduro",
                     "email": "enunomaduro@gmail.com"
                 }
             ],
-            "description": "Easily delve into your Laravel application's log files directly from the command line.",
-            "homepage": "https://github.com/laravel/pail",
+            "description": "Easily delve into your SIP3D application's log files directly from the command line.",
+            "homepage": "https://github.com/SIP3D/pail",
             "keywords": [
                 "dev",
-                "laravel",
+                "SIP3D",
                 "logs",
                 "php",
                 "tail"
             ],
             "support": {
-                "issues": "https://github.com/laravel/pail/issues",
-                "source": "https://github.com/laravel/pail"
+                "issues": "https://github.com/SIP3D/pail/issues",
+                "source": "https://github.com/SIP3D/pail"
             },
             "time": "2025-06-05T13:55:57+00:00"
         },
         {
-            "name": "laravel/pint",
+            "name": "SIP3D/pint",
             "version": "v1.25.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/laravel/pint.git",
+                "url": "https://github.com/SIP3D/pint.git",
                 "reference": "5016e263f95d97670d71b9a987bd8996ade6d8d9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/pint/zipball/5016e263f95d97670d71b9a987bd8996ade6d8d9",
+                "url": "https://api.github.com/repos/SIP3D/pint/zipball/5016e263f95d97670d71b9a987bd8996ade6d8d9",
                 "reference": "5016e263f95d97670d71b9a987bd8996ade6d8d9",
                 "shasum": ""
             },
@@ -6388,7 +6388,7 @@
                 "friendsofphp/php-cs-fixer": "^3.87.2",
                 "illuminate/view": "^11.46.0",
                 "larastan/larastan": "^3.7.1",
-                "laravel-zero/framework": "^11.45.0",
+                "SIP3D-zero/framework": "^11.45.0",
                 "mockery/mockery": "^1.6.12",
                 "nunomaduro/termwind": "^2.3.1",
                 "pestphp/pest": "^2.36.0"
@@ -6415,7 +6415,7 @@
                 }
             ],
             "description": "An opinionated code formatter for PHP.",
-            "homepage": "https://laravel.com",
+            "homepage": "https://SIP3D.com",
             "keywords": [
                 "format",
                 "formatter",
@@ -6424,22 +6424,22 @@
                 "php"
             ],
             "support": {
-                "issues": "https://github.com/laravel/pint/issues",
-                "source": "https://github.com/laravel/pint"
+                "issues": "https://github.com/SIP3D/pint/issues",
+                "source": "https://github.com/SIP3D/pint"
             },
             "time": "2025-09-19T02:57:12+00:00"
         },
         {
-            "name": "laravel/sail",
+            "name": "SIP3D/sail",
             "version": "v1.45.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/laravel/sail.git",
+                "url": "https://github.com/SIP3D/sail.git",
                 "reference": "019a2933ff4a9199f098d4259713f9bc266a874e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/sail/zipball/019a2933ff4a9199f098d4259713f9bc266a874e",
+                "url": "https://api.github.com/repos/SIP3D/sail/zipball/019a2933ff4a9199f098d4259713f9bc266a874e",
                 "reference": "019a2933ff4a9199f098d4259713f9bc266a874e",
                 "shasum": ""
             },
@@ -6460,15 +6460,15 @@
             ],
             "type": "library",
             "extra": {
-                "laravel": {
+                "SIP3D": {
                     "providers": [
-                        "Laravel\\Sail\\SailServiceProvider"
+                        "SIP3D\\Sail\\SailServiceProvider"
                     ]
                 }
             },
             "autoload": {
                 "psr-4": {
-                    "Laravel\\Sail\\": "src/"
+                    "SIP3D\\Sail\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -6478,17 +6478,17 @@
             "authors": [
                 {
                     "name": "Taylor Otwell",
-                    "email": "taylor@laravel.com"
+                    "email": "taylor@SIP3D.com"
                 }
             ],
-            "description": "Docker files for running a basic Laravel application.",
+            "description": "Docker files for running a basic SIP3D application.",
             "keywords": [
                 "docker",
-                "laravel"
+                "SIP3D"
             ],
             "support": {
-                "issues": "https://github.com/laravel/sail/issues",
-                "source": "https://github.com/laravel/sail"
+                "issues": "https://github.com/SIP3D/sail/issues",
+                "source": "https://github.com/SIP3D/sail"
             },
             "time": "2025-08-25T19:28:31+00:00"
         },
@@ -6656,26 +6656,26 @@
                 "symfony/console": "^7.3.0"
             },
             "conflict": {
-                "laravel/framework": "<11.44.2 || >=13.0.0",
+                "SIP3D/framework": "<11.44.2 || >=13.0.0",
                 "phpunit/phpunit": "<11.5.15 || >=13.0.0"
             },
             "require-dev": {
                 "brianium/paratest": "^7.8.3",
                 "larastan/larastan": "^3.4.2",
-                "laravel/framework": "^11.44.2 || ^12.18",
-                "laravel/pint": "^1.22.1",
-                "laravel/sail": "^1.43.1",
-                "laravel/sanctum": "^4.1.1",
-                "laravel/tinker": "^2.10.1",
+                "SIP3D/framework": "^11.44.2 || ^12.18",
+                "SIP3D/pint": "^1.22.1",
+                "SIP3D/sail": "^1.43.1",
+                "SIP3D/sanctum": "^4.1.1",
+                "SIP3D/tinker": "^2.10.1",
                 "orchestra/testbench-core": "^9.12.0 || ^10.4",
                 "pestphp/pest": "^3.8.2",
                 "sebastian/environment": "^7.2.1 || ^8.0"
             },
             "type": "library",
             "extra": {
-                "laravel": {
+                "SIP3D": {
                     "providers": [
-                        "NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider"
+                        "NunoMaduro\\Collision\\Adapters\\SIP3D\\CollisionServiceProvider"
                     ]
                 },
                 "branch-alias": {
@@ -6709,8 +6709,8 @@
                 "dev",
                 "error",
                 "handling",
-                "laravel",
-                "laravel-zero",
+                "SIP3D",
+                "SIP3D-zero",
                 "php",
                 "symfony"
             ],

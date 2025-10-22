@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 
-define('LARAVEL_START', microtime(true));
+define('SIP3D_START', microtime(true));
 
 require __DIR__.'/../vendor/autoload.php';
 
