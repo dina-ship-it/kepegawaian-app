@@ -15,25 +15,27 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         <div class="bg-white shadow rounded-xl p-6 text-center border border-gray-100">
             <i class="bi bi-person text-4xl text-blue-600 mb-3"></i>
-            <h2 class="text-3xl font-bold text-gray-800">45</h2>
+            <h2 id="total-dosen" class="text-3xl font-bold text-gray-800">{{ $totalDosen ?? 0 }}</h2>
             <p class="text-gray-500 text-sm">Total Dosen</p>
         </div>
 
         <div class="bg-white shadow rounded-xl p-6 text-center border border-gray-100">
             <i class="bi bi-mortarboard text-4xl text-green-600 mb-3"></i>
-            <h2 class="text-3xl font-bold text-gray-800">1250</h2>
+            <h2 id="total-mahasiswa" class="text-3xl font-bold text-gray-800">{{ $totalMahasiswa ?? 0 }}</h2>
             <p class="text-gray-500 text-sm">Total Mahasiswa</p>
         </div>
 
         <div class="bg-white shadow rounded-xl p-6 text-center border border-gray-100">
             <i class="bi bi-journal-text text-4xl text-purple-600 mb-3"></i>
-            <h2 class="text-3xl font-bold text-gray-800">78</h2>
+            <h2 id="total-penelitian" class="text-3xl font-bold text-gray-800">{{ $totalPenelitian ?? 0 }}</h2>
             <p class="text-gray-500 text-sm">Total Penelitian</p>
         </div>
 
         <div class="bg-white shadow rounded-xl p-6 text-center border border-gray-100">
             <i class="bi bi-building text-4xl text-yellow-600 mb-3"></i>
-            <h2 class="text-3xl font-bold text-gray-800">32</h2>
+            <h2 id="total-pengabdian" class="text-3xl font-bold text-gray-800">
+                {{ $totalPengabdian ?? 0}}
+            </h2>
             <p class="text-gray-500 text-sm">Total Pengabdian</p>
         </div>
     </div>
@@ -81,4 +83,33 @@
     </div>
 
 </div>
+@endsection
+
+@section('scripts')
+<script>
+async function refreshOverview() {
+  try {
+    const res  = await fetch("{{ route('admin.metrics.overview') }}", { credentials: 'same-origin' });
+    const data = await res.json();
+
+    const nf = new Intl.NumberFormat();
+    const set = (id, val) => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = nf.format(val ?? 0);
+    };
+
+    set('total-dosen',      data.dosen);
+    set('total-mahasiswa',  data.mahasiswa);
+    set('total-penelitian', data.penelitian);
+    set('total-pengabdian', data.pengabdian);
+  } catch (e) {
+    console.error('Gagal ambil data metrics overview:', e);
+  }
+}
+
+// jalan saat load
+document.addEventListener('DOMContentLoaded', refreshOverview);
+// auto-refresh tiap 10 detik
+setInterval(refreshOverview, 10000);
+</script>
 @endsection

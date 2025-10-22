@@ -33,7 +33,7 @@ class MahasiswaController extends Controller
     // =============================
     // 📤 Upload Dokumentasi
     // =============================
-    public function storeUpload(Request $request)
+    public function uploadStore(Request $request)
     {
         $request->validate([
             'judul' => 'required|string|max:255',

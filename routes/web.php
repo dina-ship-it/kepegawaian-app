@@ -8,6 +8,7 @@ use App\Http\Controllers\PenelitianController;
 use App\Http\Controllers\PengabdianController;
 use App\Http\Controllers\PrestasiController;
 use App\Http\Controllers\GoogleController;
+use App\Http\Controllers\Admin\DashboardController;
 
 // ✅ Tambahan untuk fitur export Excel
 use App\Exports\PenelitianExport;
@@ -87,11 +88,27 @@ Route::resource('dosen', DosenController::class);
 Route::resource('mahasiswa', MahasiswaController::class);
 
 // ===============================
+// 📊 Metrics Dashboard (semua angka dinamis)
+// ===============================
+use App\Models\Dosen;
+use App\Models\Mahasiswa;
+use App\Models\Penelitian;
+use App\Models\Pengabdian;
+
+Route::get('/admin/metrics/overview', function () {
+    return response()->json([
+        'dosen'      => Dosen::count(),
+        'mahasiswa'  => Mahasiswa::count(),
+        'penelitian' => Penelitian::count(),
+        'pengabdian' => Pengabdian::count(),
+    ]);
+})->name('admin.metrics.overview');
+
+// ===============================
 // 🧑‍💼 DASHBOARD ADMIN
 // ===============================
-Route::get('/admin/dashboard', function () {
-    return view('admin.dashboard');
-})->name('admin.dashboard');
+Route::get('/admin/dashboard', [DashboardController::class, 'index'])
+->name('admin.dashboard');
 
 // ===============================
 // 🚪 LOGOUT

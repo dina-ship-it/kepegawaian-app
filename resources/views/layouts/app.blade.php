@@ -89,5 +89,7 @@
         Sistem Informasi Penelitian & Pengabdian kepada Masyarakat
     </footer>
 
+    {{-- Tempat nempel script tambahan dari halaman child --}}
+    @yield('scripts') {{-- ⬅️ tambahkan ini di sini, sebelum </body> --}}
 </body>
 </html>
