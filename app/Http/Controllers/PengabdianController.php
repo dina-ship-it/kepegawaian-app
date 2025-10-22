@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Pengabdian;
 use Illuminate\Http\Request;
 
+// ✅ Tambahkan ini untuk fitur export Excel
+use App\Exports\PengabdianExport;
+use Maatwebsite\Excel\Facades\Excel;
+
 class PengabdianController extends Controller
 {
     public function index()
@@ -55,5 +59,11 @@ class PengabdianController extends Controller
     {
         $pengabdian->delete();
         return redirect()->route('pengabdian.index')->with('success', 'Data pengabdian berhasil dihapus.');
+    }
+
+    // ✅ Tambahkan method export biar gak error 500 lagi
+    public function export()
+    {
+        return Excel::download(new PengabdianExport, 'data_pengabdian.xlsx');
     }
 }
